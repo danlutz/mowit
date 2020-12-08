@@ -1,0 +1,46 @@
+---
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: 2021
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+env:
+  browser: true
+  node: true
+  jest: true
+  es6: true
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:jest/recommended
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+  - prettier
+  - prettier/@typescript-eslint
+plugins:
+  - "@typescript-eslint"
+  - jest
+  - react-hooks
+rules:
+  no-console:
+    - error
+    - allow:
+        - error
+        - info
+        - table
+        - clear
+        - debug
+        - warn
+  "@typescript-eslint/no-explicit-any": "off"
+  "@typescript-eslint/explicit-function-return-type": "off"
+  "@typescript-eslint/explicit-module-boundary-types": "off"
+  "@typescript-eslint/no-var-requires": "off"
+  require-atomic-updates: "off"
+  react-hooks/rules-of-hooks: warn
+  react-hooks/exhaustive-deps: warn
+settings:
+  react:
+    pragma: React
+    version: detect

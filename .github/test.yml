@@ -1,0 +1,27 @@
+---
+name: Run Tests
+on: push
+
+jobs:
+    build:
+        name: Run Tests
+        runs-on: ubuntu-latest
+
+        steps:
+            ##########################
+            # Checkout the code base #
+            ##########################
+            - name: Checkout Code
+              uses: actions/checkout@v2
+
+            #########################
+            # Install dependencies #
+            ########################
+            - name: Install dependencies
+              run: yarn
+
+            ###################
+            # Run test runner #
+            ###################
+            - name: Run tests
+              run: yarn test

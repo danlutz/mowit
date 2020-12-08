@@ -1,0 +1,32 @@
+{
+	"name": "@mowit/monorepo",
+	"version": "0.1.0",
+	"description": "Let the robots mow your garden.",
+	"license": "MIT",
+	"author": "mowit",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"build": "lerna run build",
+		"test": "lerna run jest",
+		"format": "lerna run format",
+		"validate": "lerna run validate",
+		"lint": "lerna run lint",
+		"prettier": "lerna run prettier"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^11.0.0",
+		"@commitlint/config-conventional": "^11.0.0",
+		"husky": "^4.3.5",
+		"lerna": "^3.22.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/danlutz/mowit.git"
+	},
+	"bugs": {
+		"url": "https://github.com/danlutz/mowit/issues"
+	}
+}

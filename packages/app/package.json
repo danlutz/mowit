@@ -1,0 +1,40 @@
+{
+	"name": "@mowit/app",
+	"version": "0.1.0",
+	"description": "Let the robots mow your garden.",
+	"license": "MIT",
+	"author": "mowit",
+	"private": true,
+	"main": "app.js",
+	"scripts": {
+		"start": "node index.js",
+		"format": "npm run prettier -- --write",
+		"validate": "npm run lint && npm run prettier -- --list-different",
+		"lint": "eslint --ext .js,.jsx,.ts,.tsx ./",
+		"prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|html|css|less|scss|ts|tsx|md|mdx|graphql|vue|py|java|php)\"",
+		"jest": "jest --passWithNoTests",
+		"test": "jest --watch",
+		"precommit": "lint-staged"
+	},
+	"dependencies": {
+		"react": "^17.0.1"
+	},
+	"devDependencies": {
+		"@types/jest": "^26.0.18",
+		"@types/node": "^14.14.11",
+		"@types/react": "^17.0.0",
+		"@typescript-eslint/eslint-plugin": "^4.9.1",
+		"@typescript-eslint/parser": "^4.9.1",
+		"eslint": "^7.15.0",
+		"eslint-config-prettier": "^7.0.0",
+		"eslint-plugin-jest": "^24.1.3",
+		"eslint-plugin-react": "^7.21.5",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"jest": "^26.6.3",
+		"jest-config": "^26.6.3",
+		"lint-staged": "^10.5.3",
+		"prettier": "^2.2.1",
+		"ts-jest": "^26.4.4",
+		"typescript": "^4.1.2"
+	}
+}
