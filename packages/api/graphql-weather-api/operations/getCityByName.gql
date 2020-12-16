@@ -1,0 +1,54 @@
+fragment summary on Summary {
+	title
+	description
+	icon
+}
+
+fragment temperature on Temperature {
+	actual
+	feelsLike
+	min
+	max
+}
+
+fragment wind on Wind {
+	speed
+	deg
+}
+
+fragment clouds on Clouds {
+	all
+	visibility
+	humidity
+}
+
+query getCityByName($name: String!, $country: String, $config: ConfigInput) {
+	getCityByName(name: $name, country: $country, config: $config) {
+		id
+		name
+		country
+
+		coord {
+			lon
+			lat
+		}
+
+		# Weather data
+		weather {
+			timestamp
+
+			summary {
+				...summary
+			}
+			temperature {
+				...temperature
+			}
+			wind {
+				...wind
+			}
+			clouds {
+				...clouds
+			}
+		}
+	}
+}

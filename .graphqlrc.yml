@@ -1,0 +1,27 @@
+# https://github.com/konstantinmuenster/graphql-weather-api
+schema: ${WEATHER_GRAPHQL_ENDPOINT:https://graphql-weather-api.herokuapp.com/}
+documents:
+    - ./packages/api/graphql-weather-api/operations/**/*.gql
+exclude:
+    - node_modules
+    - generated
+extensions:
+    codegen:
+        generates:
+            # This is where the magic happens!!!!
+            ./packages/api/graphql-weather-api/generated/graphql-weather-api.ts:
+                plugins:
+                    - typescript
+                    - typescript-operations
+                    - typed-document-node
+            ./packages/api/graphql-weather-api/generated/schema.graphql:
+                plugins:
+                    - schema-ast
+                config:
+                    includeDirectives: true
+            ./packages/api/graphql-weather-api/generated/schema.json:
+                plugins:
+                    - introspection
+        hooks:
+            afterAllFileWrite:
+                - prettier --write

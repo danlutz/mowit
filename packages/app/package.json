@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"author": "mowit",
 	"private": true,
-	"main": "app.js",
+	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
 		"format": "npm run prettier -- --write",

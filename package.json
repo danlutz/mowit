@@ -9,6 +9,7 @@
 		"packages/*"
 	],
 	"scripts": {
+		"generate": "graphql-codegen",
 		"build": "lerna run build",
 		"test": "lerna run jest",
 		"format": "lerna run format",
@@ -19,6 +20,15 @@
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
+		"@graphql-codegen/add": "^2.0.2",
+		"@graphql-codegen/cli": "^1.19.4",
+		"@graphql-codegen/introspection": "^1.18.1",
+		"@graphql-codegen/schema-ast": "^1.18.1",
+		"@graphql-codegen/typed-document-node": "^1.18.1",
+		"@graphql-codegen/typescript": "^1.19.0",
+		"@graphql-codegen/typescript-operations": "^1.17.12",
+		"@graphql-typed-document-node/core": "^3.1.0",
+		"graphql": "^15.4.0",
 		"husky": "^4.3.5",
 		"lerna": "^3.22.1"
 	},
