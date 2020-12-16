@@ -1,36 +1,40 @@
 {
-  "folders": [
-    {
-      "name": "monorepo-root",
-      "path": "."
-    },
-    {
-      "name": "app",
-      "path": "packages/app"
-    }
-  ],
-  "settings": {
-    "cSpell.words": ["mowit"],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "extensions": {
-    "recommendations": [
-      "coenraads.bracket-pair-colorizer-2",
-      "streetsidesoftware.code-spell-checker",
-      "mikestead.dotenv",
-      "hediet.vscode-drawio",
-      "dsznajder.es7-react-js-snippets",
-      "dbaeumer.vscode-eslint",
-      "eamodio.gitlens",
-      "wix.vscode-import-cost",
-      "orta.vscode-jest",
-      "christian-kohler.npm-intellisense",
-      "esbenp.prettier-vscode",
-      "q.typescript-mono-repo-import-helper",
-      "gamunu.vscode-yarn",
-      "mariusschulz.yarn-lock-syntax",
-      "knisterpeter.vscode-commitizen"
-    ]
-  }
+	"folders": [
+		{
+			"name": "monorepo-root",
+			"path": "."
+		},
+		{
+			"name": "app",
+			"path": "packages/app"
+		},
+		{
+			"name": "api",
+			"path": "packages/api"
+		}
+	],
+	"settings": {
+		"cSpell.words": ["mowit"],
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"extensions": {
+		"recommendations": [
+			"coenraads.bracket-pair-colorizer-2",
+			"streetsidesoftware.code-spell-checker",
+			"mikestead.dotenv",
+			"hediet.vscode-drawio",
+			"dsznajder.es7-react-js-snippets",
+			"dbaeumer.vscode-eslint",
+			"eamodio.gitlens",
+			"wix.vscode-import-cost",
+			"orta.vscode-jest",
+			"christian-kohler.npm-intellisense",
+			"esbenp.prettier-vscode",
+			"q.typescript-mono-repo-import-helper",
+			"gamunu.vscode-yarn",
+			"mariusschulz.yarn-lock-syntax",
+			"knisterpeter.vscode-commitizen"
+		]
+	}
 }

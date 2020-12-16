@@ -102,3 +102,6 @@ dist
 
 # Mac OS thumbnails
 .DS_Store
+
+# VS Code Settings
+.vscode/**.*
