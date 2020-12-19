@@ -1,4 +1,4 @@
-# mowit
+# rentit
 
 Let the robots mow your garden.
 
