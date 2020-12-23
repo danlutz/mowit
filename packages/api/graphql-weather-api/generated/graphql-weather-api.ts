@@ -170,8 +170,6 @@ export type CloudsFragment = { __typename?: "Clouds" } & Pick<
 
 export type GetCityByNameQueryVariables = Exact<{
 	name: Scalars["String"]
-	country?: Maybe<Scalars["String"]>
-	config?: Maybe<ConfigInput>
 }>
 
 export type GetCityByNameQuery = { __typename?: "Query" } & {
@@ -283,16 +281,6 @@ export const GetCityByNameDocument: DocumentNode<
 						type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
 					},
 				},
-				{
-					kind: "VariableDefinition",
-					variable: { kind: "Variable", name: { kind: "Name", value: "country" } },
-					type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-				},
-				{
-					kind: "VariableDefinition",
-					variable: { kind: "Variable", name: { kind: "Name", value: "config" } },
-					type: { kind: "NamedType", name: { kind: "Name", value: "ConfigInput" } },
-				},
 			],
 			selectionSet: {
 				kind: "SelectionSet",
@@ -305,22 +293,6 @@ export const GetCityByNameDocument: DocumentNode<
 								kind: "Argument",
 								name: { kind: "Name", value: "name" },
 								value: { kind: "Variable", name: { kind: "Name", value: "name" } },
-							},
-							{
-								kind: "Argument",
-								name: { kind: "Name", value: "country" },
-								value: {
-									kind: "Variable",
-									name: { kind: "Name", value: "country" },
-								},
-							},
-							{
-								kind: "Argument",
-								name: { kind: "Name", value: "config" },
-								value: {
-									kind: "Variable",
-									name: { kind: "Name", value: "config" },
-								},
 							},
 						],
 						selectionSet: {

@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar"
 import React from "react"
+import { StatusBar } from "expo-status-bar"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 
@@ -25,7 +25,6 @@ export default function App() {
 		return (
 			<ApolloProvider client={client}>
 				<SafeAreaProvider>
-					<Temperature />
 					<Navigation colorScheme={colorScheme} />
 					<StatusBar />
 				</SafeAreaProvider>

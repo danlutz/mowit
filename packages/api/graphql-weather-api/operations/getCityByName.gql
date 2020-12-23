@@ -22,8 +22,8 @@ fragment clouds on Clouds {
 	humidity
 }
 
-query getCityByName($name: String!, $country: String, $config: ConfigInput) {
-	getCityByName(name: $name, country: $country, config: $config) {
+query getCityByName($name: String!) {
+	getCityByName(name: $name) {
 		id
 		name
 		country
