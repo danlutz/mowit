@@ -2,7 +2,7 @@
 	"name": "@rentit/app",
 	"description": "Let the robots mow your garden.",
 	"version": "40.0.6",
-	"main": "node_modules/expo/AppEntry.js",
+	"main": "__generated__/AppEntry.js",
 	"private": true,
 	"scripts": {
 		"start": "expo start",
@@ -10,7 +10,8 @@
 		"ios": "expo start --ios",
 		"web": "expo start --web",
 		"eject": "expo eject",
-		"test": "jest --watchAll"
+		"test": "jest --watchAll",
+		"postinstall": "expo-yarn-workspaces postinstall"
 	},
 	"jest": {
 		"preset": "jest-expo"
@@ -24,6 +25,7 @@
 		"@react-navigation/stack": "^5.12.6",
 		"expo": "~40.0.0",
 		"expo-asset": "~8.2.1",
+		"expo-camera": "~9.1.0",
 		"expo-constants": "~9.3.0",
 		"expo-font": "~8.4.0",
 		"expo-linking": "~2.0.0",
@@ -43,6 +45,7 @@
 		"@babel/core": "~7.9.0",
 		"@types/react": "~16.9.35",
 		"@types/react-native": "~0.63.2",
+		"expo-yarn-workspaces": "^1.2.1",
 		"jest-expo": "~40.0.0",
 		"typescript": "~4.0.0"
 	}

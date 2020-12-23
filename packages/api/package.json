@@ -3,10 +3,6 @@
 	"version": "1.0.0",
 	"description": "Backend for REST and GraphQL Api's",
 	"private": true,
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
 	"author": "Michael Mösl & Daniel Lutz",
 	"license": "MIT"
 }
