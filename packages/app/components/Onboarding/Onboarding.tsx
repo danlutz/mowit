@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from "react"
 import { View, Text } from "../Themed"
 import { Alert, Button, Image, ImageURISource, StyleSheet } from "react-native"
+import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
 
 interface OnboardingStep {
 	id: number
@@ -30,15 +32,19 @@ const onboardingStepsByID: { [id: number]: OnboardingStep } = {
 	},
 }
 
-const Onboarding = () => {
+const Onboarding = ({}) => {
 	const [currentOnboardingStepID, setCurrentOnboardingStepID] = useState(
 		onboardingStepsByID?.[0]?.id ?? null,
 	)
 
+	const navigation = useNavigation()
+
 	const nextStep = () => {
 		if (currentOnboardingStepID < Object.keys(onboardingStepsByID).length - 1) {
 			setCurrentOnboardingStepID(currentOnboardingStepID + 1)
-		} else Alert.alert("Onboarding beendet.")
+		} else {
+			navigation.navigate("Home")
+		}
 	}
 	const step = onboardingStepsByID[currentOnboardingStepID]
 
