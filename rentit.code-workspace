@@ -14,7 +14,7 @@
 		}
 	],
 	"settings": {
-		"cSpell.words": ["mowit"],
+		"cSpell.words": ["rentit"],
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
 	},

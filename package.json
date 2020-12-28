@@ -9,7 +9,8 @@
 		"packages/*"
 	],
 	"scripts": {
-		"generate": "graphql-codegen",
+		"codegen": "graphql-codegen",
+		"dev": "concurrently \"yarn codegen --watch\" \"cd ./packages/app/ && yarn start\"",
 		"build": "lerna run build",
 		"test": "lerna run jest",
 		"format": "lerna run format",
@@ -28,6 +29,7 @@
 		"@graphql-codegen/typescript": "^1.19.0",
 		"@graphql-codegen/typescript-operations": "^1.17.12",
 		"@graphql-typed-document-node/core": "^3.1.0",
+		"concurrently": "^5.3.0",
 		"graphql": "^15.4.0",
 		"husky": "^4.3.5",
 		"lerna": "^3.22.1"
