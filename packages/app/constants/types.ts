@@ -1,9 +1,16 @@
-export type AuthStackParameters = {
+export type OnboardingAuthStackParameters = {
 	Onboarding: undefined
 	CreateAccount: undefined
 	ForgotPassword: undefined
 	SignIn: undefined
 	Verification: undefined
+}
+
+export type ExploreStackParameters = {
+	CategoryView: undefined
+	CategoryDetailView: undefined
+	ProductDetailView: undefined
+	SearchView: undefined
 }
 
 export type ProfileStackParameters = {

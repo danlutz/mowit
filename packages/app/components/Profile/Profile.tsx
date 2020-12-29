@@ -4,8 +4,13 @@ import { ScreenContainer } from "react-native-screens"
 import { Text } from "../Themed"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { ProfileStackParameters } from "../../constants/types"
+import { useNavigation } from "@react-navigation/native"
+import { AuthContext } from "../../constants/context"
 
-export const Profile = ({ navigation }: Props) => {
+export const Profile = ({ props }: Props) => {
+	const navigation = useNavigation()
+	const { signOut } = React.useContext(AuthContext)
+
 	return (
 		<ScreenContainer>
 			<Text>ProfileView View Screen</Text>
@@ -14,10 +19,11 @@ export const Profile = ({ navigation }: Props) => {
 			<Button title="My Listings" onPress={() => navigation.push("MyListings")} />
 			<Button title="Dataprivacy" onPress={() => navigation.push("DataPrivacy")} />
 			<Button title="Settings" onPress={() => navigation.push("Settings")} />
+			<Button title="Abmelden" onPress={() => signOut()} />
 		</ScreenContainer>
 	)
 }
 
 interface Props {
-	navigation: StackNavigationProp<ProfileStackParameters>
+	props: StackNavigationProp<ProfileStackParameters>
 }
