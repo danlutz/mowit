@@ -14,7 +14,10 @@
 		}
 	],
 	"settings": {
-		"cSpell.words": ["rentit"],
+		"cSpell.words": [
+			"Dataprivacy",
+			"rentit"
+		],
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
 	},
