@@ -7,7 +7,6 @@ import "react-native-gesture-handler"
 import useCachedResources from "./hooks/useCachedResources"
 import useColorScheme from "./hooks/useColorScheme"
 import Navigation from "./navigation"
-import Temperature from "./components/Temperature"
 
 const GRAPHQL_ENDPOINT = "https://graphql-weather-api.herokuapp.com/"
 
