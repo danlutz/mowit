@@ -3,6 +3,8 @@ import { View, Text } from "../Themed"
 import { Alert, Button, Image, ImageURISource, StyleSheet } from "react-native"
 import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import { StackNavigationProp } from "@react-navigation/stack"
+import { AuthStackParameters } from "../../constants/types"
 
 interface OnboardingStep {
 	id: number
@@ -32,18 +34,16 @@ const onboardingStepsByID: { [id: number]: OnboardingStep } = {
 	},
 }
 
-const Onboarding = ({}) => {
+const Onboarding = ({ navigation }: Props) => {
 	const [currentOnboardingStepID, setCurrentOnboardingStepID] = useState(
 		onboardingStepsByID?.[0]?.id ?? null,
 	)
-
-	const navigation = useNavigation()
 
 	const nextStep = () => {
 		if (currentOnboardingStepID < Object.keys(onboardingStepsByID).length - 1) {
 			setCurrentOnboardingStepID(currentOnboardingStepID + 1)
 		} else {
-			navigation.navigate("Home")
+			navigation.push("SignIn")
 		}
 	}
 	const step = onboardingStepsByID[currentOnboardingStepID]
@@ -56,6 +56,10 @@ const Onboarding = ({}) => {
 			<Button title="LOS GEHT'S" onPress={nextStep} />
 		</View>
 	)
+}
+
+interface Props {
+	navigation: StackNavigationProp<AuthStackParameters>
 }
 
 const styles = StyleSheet.create({
