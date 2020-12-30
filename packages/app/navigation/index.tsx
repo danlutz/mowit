@@ -114,6 +114,10 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 				setIsLoading(false)
 				setUserLoggedIn(false)
 			},
+			emailVerified: () => {
+				setIsLoading(false)
+				setUserLoggedIn(true)
+			},
 		}
 	}, [])
 
