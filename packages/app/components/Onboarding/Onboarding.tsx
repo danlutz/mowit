@@ -4,13 +4,14 @@ import { Alert, Button, Image, ImageURISource, StyleSheet } from "react-native"
 import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { AuthStackParameters } from "../../constants/types"
+import { OnboardingAuthStackParameters } from "../../constants/types"
 
 interface OnboardingStep {
 	id: number
 	title: string
 	image: ImageURISource
 	description: string
+	buttonTitle: string
 }
 
 const onboardingStepsByID: { [id: number]: OnboardingStep } = {
@@ -19,18 +20,21 @@ const onboardingStepsByID: { [id: number]: OnboardingStep } = {
 		title: "Einfach",
 		image: { uri: "https://place-hold.it/250x250" },
 		description: "Description 1",
+		buttonTitle: "Los geht's",
 	},
 	1: {
 		id: 1,
 		title: "Schnell",
 		image: { uri: "https://place-hold.it/250x250" },
 		description: "Description 2",
+		buttonTitle: "Weiter",
 	},
 	2: {
 		id: 2,
 		title: "Günstig",
 		image: { uri: "https://place-hold.it/250x250" },
-		description: "Description 2",
+		description: "Description 3",
+		buttonTitle: "Einloggen",
 	},
 }
 
@@ -43,7 +47,7 @@ const Onboarding = ({ navigation }: Props) => {
 		if (currentOnboardingStepID < Object.keys(onboardingStepsByID).length - 1) {
 			setCurrentOnboardingStepID(currentOnboardingStepID + 1)
 		} else {
-			navigation.push("SignIn")
+			navigation.navigate("SignIn")
 		}
 	}
 	const step = onboardingStepsByID[currentOnboardingStepID]
@@ -51,30 +55,39 @@ const Onboarding = ({ navigation }: Props) => {
 	return (
 		<View style={styles.container}>
 			<Image style={styles.logo} source={step.image} />
-			<Text>{step.title}</Text>
+			<Text style={styles.text}>{step.title}</Text>
 			<Text>{step.description}</Text>
-			<Button title="LOS GEHT'S" onPress={nextStep} />
+			<View style={styles.button}>
+				<Button title={step.buttonTitle} onPress={nextStep} />
+			</View>
 		</View>
 	)
 }
 
 interface Props {
-	navigation: StackNavigationProp<AuthStackParameters>
+	navigation: StackNavigationProp<OnboardingAuthStackParameters>
 }
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 50,
-		paddingLeft: 16,
-		paddingRight: 16,
+		flex: 1,
+		alignItems: "center",
+		paddingTop: 100,
 	},
-	tinyLogo: {
-		width: 50,
-		height: 50,
+	text: {
+		paddingTop: 40,
+		fontSize: 32,
+		paddingBottom: 20,
 	},
 	logo: {
+		paddingBottom: 100,
 		width: 250,
 		height: 250,
+	},
+	description: {},
+	button: {
+		position: "absolute",
+		bottom: 100,
 	},
 })
 
