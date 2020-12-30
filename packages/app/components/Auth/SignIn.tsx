@@ -16,6 +16,7 @@ export const SignIn = ({ props }: Props) => {
 			<Text>Sign In Screen</Text>
 			<Button title="Log In" onPress={() => signIn()} />
 			<Button title="Create Account In" onPress={() => navigation.push("CreateAccount")} />
+			<Button title="Passwort Vergessen" onPress={() => navigation.push("ForgotPassword")} />
 		</ScreenContainer>
 	)
 }
