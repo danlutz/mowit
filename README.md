@@ -1,6 +1,6 @@
-# rentit
+# RENT.IT
 
-Let the robots mow your garden.
+RENT.IT and everything you need!
 
 ## Monorepo architecture
 
