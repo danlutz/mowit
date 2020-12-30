@@ -5,9 +5,11 @@ import { Text } from "../Themed"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { OnboardingAuthStackParameters } from "../../constants/types"
 import { AuthContext } from "../../constants/context"
+import { useNavigation } from "@react-navigation/native"
 
-export const SignIn = ({ navigation }: Props) => {
+export const SignIn = ({ props }: Props) => {
 	const { signIn } = React.useContext(AuthContext)
+	const navigation = useNavigation()
 
 	return (
 		<ScreenContainer>
@@ -19,5 +21,5 @@ export const SignIn = ({ navigation }: Props) => {
 }
 
 interface Props {
-	navigation: StackNavigationProp<OnboardingAuthStackParameters>
+	props: StackNavigationProp<OnboardingAuthStackParameters>
 }
