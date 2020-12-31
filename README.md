@@ -13,11 +13,25 @@ This [monorepo](https://en.wikipedia.org/wiki/Monorepo) uses [Yarn workspaces](h
 -   [Node.js](https://nodejs.org/en/)
 -   [Yarn Classic](https://classic.yarnpkg.com/lang/en/)
 
-### Boostrapping
+## Run the app
+
+1.  Go to the root package of this app and type
 
 ```sh
 # This will install all npm modules for every monorepo package
 yarn install
+```
+
+2. Go to /packages/app/
+
+```sh
+cd packages/app
+```
+
+3. Run the App with the following command
+
+```sh
+expo start
 ```
 
 ## Editor
