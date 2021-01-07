@@ -4,6 +4,7 @@ export type OnboardingAuthStackParameters = {
 	ForgotPassword: undefined
 	SignIn: undefined
 	Verification: undefined
+	CreateAccount2: undefined
 }
 
 export type ExploreStackParameters = {
