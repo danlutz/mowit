@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useContext} from "react"
 import { Alert, Button, StyleSheet } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
@@ -12,10 +12,10 @@ import {
 import Navigation from "../../navigation"
 
 export const Verification = () => {
-	const { emailVerified } = React.useContext(AuthContext)
+	const { emailVerified } = useContext(AuthContext)
 
 	const cellCount = 6
-	const [value, setValue] = React.useState("")
+	const [value, setValue] = useState("")
 	const ref = useBlurOnFulfill({ value, cellCount: cellCount })
 	const [props, getCellOnLayoutHandler] = useClearByFocusCell({
 		value,

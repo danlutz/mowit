@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet, Button } from "react-native"
+import { View, StyleSheet } from "react-native"
 import { SignIn } from "../components/Auth/SignIn"
 import { CreateAccount } from "../components/Auth/CreateAccount"
 import { ForgotPassword } from "../components/Auth/ForgotPassword"
