@@ -16,13 +16,10 @@ export const SignIn = ({ props }: Props) => {
 	//MARK: FAKE USER VALIDATION
 	const onlogin = () => {
 		if (eMailText == "" || passwordText == "") {
-			Alert.alert("E-Mail Adresse und Passwort darf nicht leer sein")
+			signIn()
+			//Alert.alert("E-Mail Adresse und Passwort darf nicht leer sein")
 		} else {
-			if (
-				(eMailText == "michi@rentit.com" || eMailText == "Michi@rentit.com") &&
-				passwordText == "123456"
-			) {
-				signIn()
+			if (eMailText.toLowerCase() == "michi@rentit.com" && passwordText == "123456") {
 			} else {
 				Alert.alert("E-Mail Adresse oder Passwort falsch")
 			}
@@ -35,28 +32,35 @@ export const SignIn = ({ props }: Props) => {
 		<ScreenContainer style={styles.container}>
 			<Text style={styles.rentIT}>RENT.IT</Text>
 			<TextInput
-			style={styles.textfield}
+				style={styles.textfield}
 				onChangeText={(text) => oncChangeEmailText(text)}
 				value={eMailText}
 				keyboardType={"email-address"}
 				placeholder={"E-Mail Adresse"}
 			/>
 			<TextInput
-			style={styles.textfield}
+				style={styles.textfield}
 				secureTextEntry={true}
-
 				onChangeText={(text) => onChangePasswordText(text)}
 				value={passwordText}
 				placeholder={"Passwort"}
 			/>
 			<View style={styles.button}>
-			<Button color="#ffffff" title="Anmelden" onPress={() => onlogin()} />
+				<Button color="#ffffff" title="Anmelden" onPress={() => onlogin()} />
 			</View>
 			<View style={styles.links}>
-			<Button color="#E67E22" title="Du hast noch kein Account? Jetzt registrieren" onPress={() => navigation.push("CreateAccount")} />
+				<Button
+					color="#E67E22"
+					title="Du hast noch kein Account? Jetzt registrieren"
+					onPress={() => navigation.push("CreateAccount")}
+				/>
 			</View>
 			<View style={styles.linkszwei}>
-			<Button color="#E67E22" title="Passwort vergessen ?" onPress={() => navigation.push("ForgotPassword")} />
+				<Button
+					color="#E67E22"
+					title="Passwort vergessen ?"
+					onPress={() => navigation.push("ForgotPassword")}
+				/>
 			</View>
 		</ScreenContainer>
 	)
@@ -69,10 +73,10 @@ interface Props {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#FFF',
+		backgroundColor: "#FFF",
 		alignItems: "center",
 		paddingTop: 200,
-		fontFamily: 'Helvetica Neue'
+		fontFamily: "Helvetica Neue",
 	},
 	rentIT: {
 		paddingTop: 10,
@@ -80,40 +84,36 @@ const styles = StyleSheet.create({
 		fontSize: 32,
 		paddingBottom: 20,
 		fontWeight: "bold",
-		textAlign: 'center'
+		textAlign: "center",
 	},
 
 	textfield: {
-		height: 40, 
+		height: 40,
 		width: 340,
 		marginBottom: 10,
-		borderColor: '#F7F9FC', 
+		borderColor: "#F7F9FC",
 		borderWidth: 1,
-		color: '#000',
-		backgroundColor: '#F7F9FC'
+		color: "#000",
+		backgroundColor: "#F7F9FC",
 	},
 	links: {
 		marginTop: 30,
-		
-
 	},
 	linkszwei: {
 		marginBottom: 30,
-		
-
 	},
 	button: {
 		marginTop: 30,
-		backgroundColor: '#E67E22',
+		backgroundColor: "#E67E22",
 		borderRadius: 4,
-		color: '#FFFFFF',
-		shadowColor: '#111111',
+		color: "#FFFFFF",
+		shadowColor: "#111111",
 		shadowOpacity: 0.2,
-		textTransform: 'uppercase',
+		textTransform: "uppercase",
 		width: 220,
 		shadowOffset: {
 			width: 0,
 			height: 2,
-		}
+		},
 	},
 })
