@@ -4,9 +4,11 @@ import { SafeAreaProvider } from "react-native-safe-area-context"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 import "react-native-gesture-handler"
 
+import Navigation from "./navigation"
+import { AppContextProvider } from "./context/AppContext"
+
 import useCachedResources from "./hooks/useCachedResources"
 import useColorScheme from "./hooks/useColorScheme"
-import Navigation from "./navigation"
 
 const GRAPHQL_ENDPOINT = "https://graphql-weather-api.herokuapp.com/"
 
@@ -19,16 +21,16 @@ export default function App() {
 	const isLoadingComplete = useCachedResources()
 	const colorScheme = useColorScheme()
 
-	if (!isLoadingComplete) {
-		return null
-	} else {
-		return (
-			<ApolloProvider client={client}>
+	if (!isLoadingComplete) return null
+
+	return (
+		<ApolloProvider client={client}>
+			<AppContextProvider>
 				<SafeAreaProvider>
 					<Navigation colorScheme={colorScheme} />
 					<StatusBar />
 				</SafeAreaProvider>
-			</ApolloProvider>
-		)
-	}
+			</AppContextProvider>
+		</ApolloProvider>
+	)
 }
