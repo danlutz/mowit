@@ -32,7 +32,9 @@ export const Verification = () => {
 
 	return (
 		<ScreenContainer>
-			<Text>Underline example</Text>
+			<Text>rent.it </Text>
+			<Text>Wir haben dir einen Code gesendet</Text>
+			<Text>Gib den Code ein um deine Email Adresse max.mustermann@gmail.com zu bestätigen</Text>
 			<CodeField
 				ref={ref}
 				{...props}
@@ -48,6 +50,15 @@ export const Verification = () => {
 				)}
 			/>
 			<Button title="Email Verified" onPress={() => validateCode()} />
+			<Button title="Keine E-Mail erhalten?" onPress={() => 
+			Alert.alert(
+				"E-Mail nicht erhalten?",
+				"Neuen Code auf max.mustermann@gmail.com?",
+				[	{text: "Abbruch", onPress: () => console.log("cancel")},
+					{ text: "OK", onPress: () => Alert.alert("Code zugesendet") }
+				],
+				{ cancelable: true },
+			)} />
 		</ScreenContainer>
 	)
 }
