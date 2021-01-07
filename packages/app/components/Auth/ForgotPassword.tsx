@@ -4,7 +4,7 @@ import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
 
 export const ForgotPassword = () => {
-	const [eMailText, oncChangeEmailText] = React.useState("E-Mail")
+	const [eMailText, oncChangeEmailText] = React.useState("")
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		borderColor: '#F7F9FC', 
 		borderWidth: 1,
-		color: '#F7F9FC',
+		color: '#000',
 		backgroundColor: '#F7F9FC'
 	},
 	links: {
