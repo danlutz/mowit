@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		borderColor: '#F7F9FC', 
 		borderWidth: 1,
-		color: '#F7F9FC',
+		color: '#000',
 		backgroundColor: '#F7F9FC'
 	},
 	links: {
