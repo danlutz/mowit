@@ -33,14 +33,14 @@ export const Profile = ({ props }: Props) => {
 			<View>
 				<TouchableOpacity style={styles.buttonProfileStyle} activeOpacity={0.5}>
 					<Image
-						source={require("../../assets/images/verlauf.png")}
+						source={require("../../assets/images/myproducts.png")}
 						style={styles.buttonImageIconStyleNormal}
 					/>
 					<View style={styles.buttonTextStyleHead}>
 						<Button
-							title="Bereits ausgeliehene Produkte"
+							title="Meine Produkte"
 							color="#222B45"
-							onPress={() => navigation.push("AlreadyRented")}
+							onPress={() => navigation.push("MyListings")}
 						/>
 					</View>
 					<View style={styles.buttonIconSeparatorStyle} />
@@ -54,9 +54,9 @@ export const Profile = ({ props }: Props) => {
 					/>
 					<View style={styles.buttonTextStyleHead}>
 						<Button
-							title="Anfragen"
+							title="Bereits ausgeliehene Produkte"
 							color="#222B45"
-							onPress={() => navigation.push("MyListings")}
+							onPress={() => navigation.push("AlreadyRented")}
 						/>
 					</View>
 					<View style={styles.buttonIconSeparatorStyle} />
