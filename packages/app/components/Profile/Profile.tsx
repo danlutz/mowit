@@ -19,7 +19,7 @@ export const Profile = ({ props }: Props) => {
 						source={require("../../assets/images/profilImage.png")}
 						style={styles.buttonImageIconStyleProfile}
 					/>
-					<Text style={styles.buttonTextStyleHead}>Max Mustermann </Text>
+					<Text style={styles.buttonTextStyleHead}>Max Mustermann</Text>
 					<View style={styles.buttonTextStyleHead}>
 						<Button
 							title="Edit"
@@ -105,9 +105,10 @@ interface Props {
 
 const styles = StyleSheet.create({
 	container: {
+		width: '100%',
 		flex: 1,
-		backgroundColor: "#FFF",
-		paddingTop: 100,
+		backgroundColor: "#fff",
+		paddingTop: 70,
 		fontFamily: "Helvetica Neue",
 	},
 	buttonProfileStyle: {
