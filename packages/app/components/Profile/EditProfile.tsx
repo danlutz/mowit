@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Alert, Button, Image, StyleSheet } from "react-native"
+import { Alert, Button, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
 import { StackNavigationProp } from "@react-navigation/stack"
@@ -15,25 +15,66 @@ const EditProfile = () => {
 	const { signOut } = React.useContext(AuthContext)
 
 	return (
-		<ScreenContainer>
-			<Text>Editprofile Screen</Text>
-			<Image source={require("../../assets/images/profilImage.png")} />
+		<ScreenContainer style={styles.container}>
+			<View>
+				<TouchableOpacity style={styles.buttonProfileStyle} activeOpacity={0.5}>
+					<Image
+						source={require("../../assets/images/profilImage.png")}
+						style={styles.buttonImageIconStyleProfile}
+					/>
+					<Text style={styles.buttonTextStyleHead}>Max Mustermann</Text>
+					<View style={styles.buttonTextStyleHead}></View>
+					<View style={styles.buttonIconSeparatorStyle} />
+				</TouchableOpacity>
+			</View>
 			<TextInput
 				style={styles.textfield}
 				onChangeText={(text) => oncChangeEmailText(text)}
-				keyboardType={"email-address"}
 				placeholder={"Vornamne"}
 			/>
 			<TextInput
 				style={styles.textfield}
 				onChangeText={(text) => oncChangeEmailText(text)}
-				keyboardType={"email-address"}
 				placeholder={"Nachname"}
 			/>
-			<Button title="Speichern" onPress={() => Alert.alert("OK")} />
-			<Button title="Passwort Ändern" onPress={() => Alert.alert("OK")} />
-			<Button title="E-Mail Adresse Ändern" onPress={() => navigation.push("ChangeEMail")} />
-			<Button title="Account löschen" onPress={() => signOut()} />
+			<View style={styles.button}>
+				<Button color="#FFF" title="Speichern" onPress={() => Alert.alert("gespeichert")} />
+			</View>
+			<View>
+				<TouchableOpacity style={styles.buttonProfileStyle} activeOpacity={0.5}>
+					<Image
+						source={require("../../assets/images/password.png")}
+						style={styles.buttonImageIconStyleNormal}
+					/>
+					<View style={styles.buttonTextStyleHead}>
+						<Button
+							title="Passwort Ändern"
+							color="#222B45"
+							onPress={() => navigation.push("ChangePassword")}
+						/>
+					</View>
+					<View style={styles.buttonIconSeparatorStyle} />
+				</TouchableOpacity>
+			</View>
+			<View>
+				<TouchableOpacity style={styles.buttonProfileStyle} activeOpacity={0.5}>
+					<Image
+						source={require("../../assets/images/email.png")}
+						style={styles.buttonImageIconStyleNormal}
+					/>
+					<View style={styles.buttonTextStyleHead}>
+						<Button
+							title="Email"
+							color="#222B45"
+							onPress={() => navigation.push("ChangeEMail")}
+						/>
+					</View>
+					<View style={styles.buttonIconSeparatorStyle} />
+				</TouchableOpacity>
+			</View>
+			<View style={styles.links}>
+				<Button color="#E67E22" title="Account löschen" onPress={() => signOut()} />
+			</View>
 		</ScreenContainer>
 	)
 }
@@ -45,9 +86,8 @@ interface Props {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#FFF",
-		alignItems: "center",
-		paddingTop: 200,
+		backgroundColor: "#fff",
+		paddingTop: 70,
 		fontFamily: "Helvetica Neue",
 	},
 	rentIT: {
@@ -59,23 +99,69 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 
+	buttonProfileStyle: {
+		flexDirection: "row",
+		alignItems: "center",
+		backgroundColor: "#fff",
+		borderWidth: 0.5,
+		borderTopColor: "#F9F9F9",
+		borderBottomColor: "#F9F9F9",
+		borderColor: "#FFF",
+		height: 50,
+		margin: 5,
+		marginBottom: 20,
+	},
+	buttonImageIconStyleProfile: {
+		padding: 10,
+		margin: 5,
+		height: 80,
+		width: 80,
+		resizeMode: "stretch",
+	},
+	buttonImageIconStyleNormal: {
+		padding: 10,
+		margin: 5,
+		marginBottom: 10,
+		height: 25,
+		width: 25,
+		resizeMode: "stretch",
+	},
+	buttonIconSeparatorStyle: {
+		backgroundColor: "#fff",
+		width: 1,
+		height: 40,
+	},
+	buttonTextStyleHead: {
+		color: "#222B45",
+		fontWeight: "bold",
+		fontSize: 22,
+		marginBottom: 4,
+		marginLeft: 10,
+	},
+	buttonTextStyleBody: {
+		color: "#fff",
+		marginBottom: 4,
+		marginLeft: 10,
+	},
+	links: {
+		color: "#E67E22",
+		marginBottom: 4,
+		marginLeft: 10,
+	},
+
 	textfield: {
 		height: 40,
 		width: 340,
-		marginBottom: 10,
+
+		marginTop: 10,
 		borderColor: "#F7F9FC",
 		borderWidth: 1,
 		color: "#000",
 		backgroundColor: "#F7F9FC",
 	},
-	links: {
-		marginTop: 30,
-	},
-	linkszwei: {
-		marginBottom: 30,
-	},
 	button: {
 		marginTop: 30,
+		marginBottom: 30,
 		backgroundColor: "#E67E22",
 		borderRadius: 4,
 		color: "#FFFFFF",
