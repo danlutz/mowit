@@ -8,6 +8,9 @@ import EditProfile from "../components/Profile/EditProfile"
 import { MyListings } from "../components/Profile/MyListings"
 import { ProfileStackParameters } from "../constants/types"
 import { StackNavigationProp } from "@react-navigation/stack"
+import { ChangePassword } from "../components/Profile/ChangePassword"
+import { ChangeEMail } from "../components/Profile/ChangeEMail"
+import { EMailVerify } from "../components/Profile/EMailVerify"
 
 const styles = StyleSheet.create({
 	container: {
@@ -62,6 +65,29 @@ export const MyListingsScreen = () => {
 	return (
 		<ScreenContainer>
 			<MyListings />
+		</ScreenContainer>
+	)
+}
+
+export const ChangeEMailScreen = () => {
+	return (
+		<ScreenContainer>
+			<ChangeEMail />
+		</ScreenContainer>
+	)
+}
+
+export const ChangePasswordScreen = () => {
+	return (
+		<ScreenContainer>
+			<ChangePassword />
+		</ScreenContainer>
+	)
+}
+export const EMailVerifyScreen = () => {
+	return (
+		<ScreenContainer>
+			<EMailVerify />
 		</ScreenContainer>
 	)
 }

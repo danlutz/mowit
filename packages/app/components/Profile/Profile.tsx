@@ -70,7 +70,7 @@ export const Profile = ({ props }: Props) => {
 					/>
 					<View style={styles.buttonTextStyleHead}>
 						<Button
-							title="Allgemeine Infos und FAQ's"
+							title="Datenschutzinformation"
 							color="#222B45"
 							onPress={() => navigation.push("DataPrivacy")}
 						/>
@@ -105,7 +105,7 @@ interface Props {
 
 const styles = StyleSheet.create({
 	container: {
-		width: '100%',
+		width: "100%",
 		flex: 1,
 		backgroundColor: "#fff",
 		paddingTop: 70,

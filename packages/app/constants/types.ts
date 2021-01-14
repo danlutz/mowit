@@ -21,6 +21,9 @@ export type ProfileStackParameters = {
 	Settings: undefined
 	EditProfile: undefined
 	MyListings: undefined
+	ChangeEMail: undefined
+	ChangePassword: undefined
+	EMailVerify: undefined
 }
 
 export type TabStackParameters = {

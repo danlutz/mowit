@@ -15,6 +15,9 @@ import {
 	SettingsScreen,
 	EditProfileScreen,
 	MyListingsScreen,
+	ChangeEMailScreen,
+	ChangePasswordScreen,
+	EMailVerifyScreen,
 } from "../screens/ProfileScreens"
 
 import {
@@ -54,6 +57,9 @@ const ProfileStackScreen = () => (
 		<ProfileStack.Screen name="Settings" component={SettingsScreen} />
 		<ProfileStack.Screen name="EditProfile" component={EditProfileScreen} />
 		<ProfileStack.Screen name="MyListings" component={MyListingsScreen} />
+		<ProfileStack.Screen name="ChangeEMail" component={ChangeEMailScreen} />
+		<ProfileStack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+		<ProfileStack.Screen name="EMailVerify" component={EMailVerifyScreen} />
 	</ProfileStack.Navigator>
 )
 
@@ -134,7 +140,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 				linking={LinkingConfiguration}
 				theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
 			>
-				{userLoggedIn ? <Home /> : <AuthStackScreen />}
+				{userLoggedIn ? <Home /> : <ProfileStackScreen />}
 			</NavigationContainer>
 		</AuthContext.Provider>
 	)

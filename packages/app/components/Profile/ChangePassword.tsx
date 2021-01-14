@@ -1,45 +1,36 @@
 import React, { useState } from "react"
 import { Alert, Button, Image, StyleSheet } from "react-native"
+import { TextInput } from "react-native-gesture-handler"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
-import { StackNavigationProp } from "@react-navigation/stack"
-import { ProfileStackParameters } from "../../constants/types"
-import { useNavigation } from "@react-navigation/native"
-import { TextInput } from "react-native-gesture-handler"
-import { AuthContext } from "../../constants/context"
 
-const EditProfile = () => {
-	const [email, oncChangeEmailText] = useState("")
-	const navigation = useNavigation()
-
-	const { signOut } = React.useContext(AuthContext)
+export const ChangePassword = () => {
+	const [password, actualPassword] = useState("")
+	const [newPassword, setNewPassword] = useState("")
+	const [confirmPassword, setConfirmPassword] = useState("")
 
 	return (
 		<ScreenContainer>
-			<Text>Editprofile Screen</Text>
+			<Text>Change E-Mail Screen</Text>
 			<Image source={require("../../assets/images/profilImage.png")} />
 			<TextInput
 				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
-				keyboardType={"email-address"}
-				placeholder={"Vornamne"}
+				onChangeText={(text) => actualPassword(text)}
+				placeholder={"aktuelles PAsswort"}
 			/>
 			<TextInput
 				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
-				keyboardType={"email-address"}
-				placeholder={"Nachname"}
+				onChangeText={(text) => setNewPassword(text)}
+				placeholder={"neues Passwort"}
 			/>
-			<Button title="Speichern" onPress={() => Alert.alert("OK")} />
-			<Button title="Passwort Ändern" onPress={() => Alert.alert("OK")} />
-			<Button title="E-Mail Adresse Ändern" onPress={() => navigation.push("ChangeEMail")} />
-			<Button title="Account löschen" onPress={() => signOut()} />
+			<TextInput
+				style={styles.textfield}
+				onChangeText={(text) => setConfirmPassword(text)}
+				placeholder={"neues Passwort bestätigen"}
+			/>
+			<Button title="Ändern" onPress={() => Alert.alert("GO BACK")} />
 		</ScreenContainer>
 	)
-}
-
-interface Props {
-	navigation: StackNavigationProp<ProfileStackParameters>
 }
 
 const styles = StyleSheet.create({
@@ -89,5 +80,3 @@ const styles = StyleSheet.create({
 		},
 	},
 })
-
-export default EditProfile
