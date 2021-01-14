@@ -16,13 +16,20 @@ export interface Product {
 	category: string
 }
 
+export interface Profile {
+	firstName: string
+	lastName: string
+}
+
 export const defaultAppContext: AppContextState = {
 	products: MOCK_PRODUCTS,
+	isLoggedIn: false,
 	// eslint-disable-next-line
 	dispatch: (action: AppContextReducerAction) => {},
 }
 
 export interface AppContextState {
+	isLoggedIn: boolean
 	products: Product[]
 	dispatch: DispatchAppContext
 }
@@ -37,6 +44,18 @@ const appContextReducer = (state: AppContextState, action: AppContextReducerActi
 			return {
 				...state,
 				products: [...state.products, payload],
+			}
+
+		case "LOGIN":
+			return {
+				...state,
+				isLoggedIn: true,
+			}
+
+		case "LOGOUT":
+			return {
+				...state,
+				isLoggedIn: false,
 			}
 
 		default:
@@ -57,7 +76,7 @@ interface AppContextProviderProps {
 }
 
 export interface AppContextReducerAction {
-	type: "ADD_PRODUCT"
+	type: "ADD_PRODUCT" | "LOGIN" | "LOGOUT"
 	payload?: any
 }
 
