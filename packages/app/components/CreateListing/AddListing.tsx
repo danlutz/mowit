@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react"
-import { Alert, Button, TextInput, StyleSheet } from "react-native"
+import { Alert, Button, TextInput, StyleSheet, Keyboard, Image } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { Picker } from "@react-native-picker/picker"
+import * as Permissions from "expo-permissions"
+import * as FileSystem from "expo-file-system"
+import * as ImagePicker from "expo-image-picker"
 
 import { Text } from "../Themed"
-import CameraPreview from "../CameraPreview"
+
 import AppContext, { Product } from "../../context/AppContext"
 
 const availableCategories = [
@@ -27,12 +30,16 @@ export const AddListing = () => {
 	const [selectedCategory, setSelectedCategory] = useState(availableCategories[0])
 	const [rentPriceEurosPerHours, setRentPriceEurosPerHours] = useState(0)
 	const [categoryDisplayed, setCategoryDisplayed] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
+	const [pickedImage, setPickedImage] = useState("")
 
 	const onSubmit = () => {
+		setIsLoading(true)
 		const isValid = validateUserInput(name, description, Number(rentPriceEurosPerHours))
 
 		if (!isValid) {
 			Alert.alert("Bitte validieren sie Ihre Eingabe")
+			setIsLoading(false)
 			return
 		}
 
@@ -41,6 +48,7 @@ export const AddListing = () => {
 			description,
 			rentPriceEurosPerHours: Number(rentPriceEurosPerHours),
 			category: selectedCategory,
+			image: pickedImage,
 		}
 
 		dispatch({
@@ -49,35 +57,87 @@ export const AddListing = () => {
 		})
 
 		Alert.alert("Produkt wurde platziert")
+		setIsLoading(false)
 	}
 
 	const onCategoryButtonClick = () => {
 		setCategoryDisplayed(!categoryDisplayed)
 	}
 
+	const addImpressionHandler = async () => {
+		try {
+			const permRes = await Permissions.askAsync(Permissions.CAMERA)
+			if (permRes.status !== "granted") {
+				Alert.alert(
+					"Insufficient Permission Error",
+					"For this feature, the app needs access to your camera :-/",
+					[{ text: "Okay" }],
+				)
+				return
+			}
+			const imgRes = await ImagePicker.launchCameraAsync()
+			if (!imgRes || imgRes.cancelled || !imgRes.uri) {
+				return
+			}
+
+			const persistentPath = FileSystem.documentDirectory + imgRes.uri.split("/").pop()
+			await FileSystem.moveAsync({
+				from: imgRes.uri,
+				to: persistentPath,
+			})
+			console.log(persistentPath)
+			setPickedImage(persistentPath)
+			Keyboard.dismiss()
+		} catch (error) {
+			console.warn(error)
+		}
+	}
+
 	return (
 		<ScreenContainer style={styles.container}>
-			<Text style={styles.headline}>Produkt platzieren</Text>
-			<TextInput style={styles.textInput} value={name} onChangeText={setName} placeholder="Produktname" />
-			<Button onPress={onCategoryButtonClick} style={styles.categoryButton} title={"Kategorie auswählen"}/>
+			<Text style={styles.headline}>
+				Produkt platzieren {isLoading ? "isLoading" : "not isLoading"}
+			</Text>
+			<Button onPress={addImpressionHandler} title="Camera"></Button>
+			<Image
+				style={styles.previewImage}
+				source={{
+					uri: pickedImage,
+				}}
+			/>
+
+			<TextInput
+				style={styles.textInput}
+				value={name}
+				onChangeText={setName}
+				placeholder="Produktname"
+			/>
+			<Button
+				onPress={onCategoryButtonClick}
+				style={styles.categoryButton}
+				title={"Kategorie auswählen"}
+			/>
 			<TextInput
 				value={description}
 				onChangeText={setDescription}
 				placeholder="Beschreibung"
 				style={styles.textInput}
+				editable={!isLoading}
 			/>
+			<TextInput value={String(rentPriceEurosPerHours)} />
 			<TextInput
-				value={rentPriceEurosPerHours}
-				onChangeText={setRentPriceEurosPerHours}
+				value={String(rentPriceEurosPerHours)}
+				onChangeText={(value) => setRentPriceEurosPerHours(Number(value))}
 				placeholder="Leihgebühr"
 				keyboardType="number-pad"
 				style={styles.textInput}
+				editable={!isLoading}
 			/>
 
 			<Picker
 				mode="dropdown"
 				selectedValue={selectedCategory}
-				onValueChange={setSelectedCategory}
+				onValueChange={(value) => setSelectedCategory(value as string)}
 				style={categoryDisplayed ? styles.pickerActive : styles.picker}
 			>
 				{availableCategories.map((category) => {
@@ -92,59 +152,62 @@ export const AddListing = () => {
 
 const styles = StyleSheet.create({
 	imageContainer: {
-		backgroundColor: 'red'
+		backgroundColor: "red",
 	},
 	image: {
-		width: '100%'
+		width: "100%",
 	},
 	categoryButton: {
-		marginLeft: 'auto',
+		marginLeft: "auto",
 		marginTop: 0,
 		marginBottom: 0,
-		marginRight: 'auto',
-		backgroundColor: '#F7F9FC',
+		marginRight: "auto",
+		backgroundColor: "#F7F9FC",
 		borderRadius: 10,
 		borderWidth: 2,
 		padding: 15,
-		borderColor: '#E4E9F2'
+		borderColor: "#E4E9F2",
 	},
 	textInput: {
-		width: '80%',
-		marginLeft: 'auto',
+		width: "80%",
+		marginLeft: "auto",
 		marginTop: 0,
 		marginBottom: 0,
-		marginRight: 'auto',
-		backgroundColor: '#F7F9FC',
+		marginRight: "auto",
+		backgroundColor: "#F7F9FC",
 		borderRadius: 10,
 		borderWidth: 2,
 		padding: 15,
-		borderColor: '#E4E9F2'
+		borderColor: "#E4E9F2",
 	},
 	container: {
-		width: '100%',
-		height: '100%',
-		backgroundColor: '#fff'
+		width: "100%",
+		height: "100%",
+		backgroundColor: "#fff",
 	},
 	headline: {
-		width: '100%',
-		textAlign: 'center',
+		width: "100%",
+		textAlign: "center",
 		marginTop: 25,
 		marginBottom: 25,
-		fontSize: 24
+		fontSize: 24,
 	},
 	picker: {
-		position: 'absolute',
+		position: "absolute",
 		bottom: 0,
 		left: 0,
 		right: 0,
-		display: 'none'
+		display: "none",
 	},
 	pickerActive: {
-		position: 'absolute',
+		position: "absolute",
 		bottom: 0,
 		left: 0,
 		right: 0,
-		display: 'flex'
-	}
-
+		display: "flex",
+	},
+	previewImage: {
+		width: 50,
+		height: 50,
+	},
 })

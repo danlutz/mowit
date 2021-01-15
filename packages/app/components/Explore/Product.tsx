@@ -1,15 +1,20 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Image } from "react-native"
 
 import { Product as ProductInterface } from "../../context/AppContext"
 import { Text } from "../Themed"
 
 const Product = ({ product }: Props) => {
-	const { name, description, rentPriceEurosPerHours } = product
+	const { name, description, rentPriceEurosPerHours, image } = product
 
 	return (
 		<View>
 			<Text>{name}</Text>
+			<Image
+				source={{
+					uri: image,
+				}}
+			/>
 			<Text>{description}</Text>
 			<Text>{rentPriceEurosPerHours} €</Text>
 		</View>
