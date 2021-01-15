@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Alert, Button, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
@@ -6,13 +6,17 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import { ProfileStackParameters } from "../../constants/types"
 import { useNavigation } from "@react-navigation/native"
 import { TextInput } from "react-native-gesture-handler"
-import { AuthContext } from "../../constants/context"
+import AppContext from "../../context/AppContext"
 
 const EditProfile = () => {
-	const [email, oncChangeEmailText] = useState("")
+	const { user, dispatch } = useContext(AppContext)
+	const [firstName, setFirstName] = useState("")
+	const [lastName, setLastName] = useState("")
 	const navigation = useNavigation()
 
-	const { signOut } = React.useContext(AuthContext)
+	const updateUser = (firstName: string, lastName: string) => {
+		dispatch({ type: "UPDATE_USER", payload: { firstName, lastName } })
+	}
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -22,23 +26,31 @@ const EditProfile = () => {
 						source={require("../../assets/images/profilImage.png")}
 						style={styles.buttonImageIconStyleProfile}
 					/>
-					<Text style={styles.buttonTextStyleHead}>Max Mustermann</Text>
+					<Text style={styles.buttonTextStyleHead}>
+						{user.firstName} {user.lastName}
+					</Text>
 					<View style={styles.buttonTextStyleHead}></View>
 					<View style={styles.buttonIconSeparatorStyle} />
 				</TouchableOpacity>
 			</View>
 			<TextInput
 				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
-				placeholder={"Vornamne"}
+				onChangeText={setFirstName}
+				placeholder={"Vorname"}
+				value={firstName}
 			/>
 			<TextInput
 				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
+				onChangeText={setLastName}
 				placeholder={"Nachname"}
+				value={lastName}
 			/>
 			<View style={styles.button}>
-				<Button color="#FFF" title="Speichern" onPress={() => Alert.alert("gespeichert")} />
+				<Button
+					color="#FFF"
+					title="Speichern"
+					onPress={() => updateUser(firstName, lastName)}
+				/>
 			</View>
 			<View>
 				<TouchableOpacity style={styles.buttonProfileStyle} activeOpacity={0.5}>
