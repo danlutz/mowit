@@ -11,7 +11,12 @@ export const Profile = ({ props }: Props) => {
 	const navigation = useNavigation()
 	const {
 		user: { firstName, lastName },
+		dispatch,
 	} = useContext(AppContext)
+
+	const logout = () => {
+		dispatch({ type: "LOGOUT" })
+	}
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -98,7 +103,7 @@ export const Profile = ({ props }: Props) => {
 					<View style={styles.buttonIconSeparatorStyle} />
 				</TouchableOpacity>
 			</View>
-			<Button color="#E67E22" title="Abmelden" onPress={() => signOut()} />
+			<Button color="#E67E22" title="Abmelden" onPress={logout} />
 		</ScreenContainer>
 	)
 }

@@ -1,14 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Button, TextInput, StyleSheet, Alert, View } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { Text } from "../Themed"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { OnboardingAuthStackParameters } from "../../constants/types"
-import { AuthContext } from "../../constants/context"
 import { useNavigation } from "@react-navigation/native"
+import AppContext from "../../context/AppContext"
 
 export const SignIn = ({ props }: Props) => {
-	const { signIn } = React.useContext(AuthContext)
+	const { dispatch } = useContext(AppContext)
 	const navigation = useNavigation()
 	const [eMailText, oncChangeEmailText] = React.useState("")
 	const [passwordText, onChangePasswordText] = React.useState("")
@@ -16,7 +16,7 @@ export const SignIn = ({ props }: Props) => {
 	//MARK: FAKE USER VALIDATION
 	const onlogin = () => {
 		if (eMailText == "" || passwordText == "") {
-			signIn()
+			dispatch({ type: "LOGIN" })
 			//Alert.alert("E-Mail Adresse und Passwort darf nicht leer sein")
 		} else {
 			if (eMailText.toLowerCase() == "michi@rentit.com" && passwordText == "123456") {
