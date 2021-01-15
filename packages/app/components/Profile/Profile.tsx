@@ -1,15 +1,22 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Button, StyleSheet, TouchableOpacity, Image } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { Text, View } from "../Themed"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { ProfileStackParameters } from "../../constants/types"
 import { useNavigation } from "@react-navigation/native"
-import { AuthContext } from "../../constants/context"
+import AppContext from "../../context/AppContext"
 
 export const Profile = ({ props }: Props) => {
 	const navigation = useNavigation()
-	const { signOut } = React.useContext(AuthContext)
+	const {
+		user: { firstName, lastName },
+		dispatch,
+	} = useContext(AppContext)
+
+	const logout = () => {
+		dispatch({ type: "LOGOUT" })
+	}
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -19,7 +26,9 @@ export const Profile = ({ props }: Props) => {
 						source={require("../../assets/images/profilImage.png")}
 						style={styles.buttonImageIconStyleProfile}
 					/>
-					<Text style={styles.buttonTextStyleHead}>Max Mustermann</Text>
+					<Text style={styles.buttonTextStyleHead}>
+						{firstName} {lastName}
+					</Text>
 					<View style={styles.buttonTextStyleHead}>
 						<Button
 							title="Edit"
@@ -94,7 +103,7 @@ export const Profile = ({ props }: Props) => {
 					<View style={styles.buttonIconSeparatorStyle} />
 				</TouchableOpacity>
 			</View>
-			<Button color="#E67E22" title="Abmelden" onPress={() => signOut()} />
+			<Button color="#E67E22" title="Abmelden" onPress={logout} />
 		</ScreenContainer>
 	)
 }

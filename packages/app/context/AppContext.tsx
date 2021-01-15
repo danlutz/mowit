@@ -22,6 +22,7 @@ export interface Profile {
 }
 
 export const defaultAppContext: AppContextState = {
+	user: { firstName: "Max", lastName: "Mustermann" },
 	products: MOCK_PRODUCTS,
 	isLoggedIn: false,
 	// eslint-disable-next-line
@@ -29,6 +30,7 @@ export const defaultAppContext: AppContextState = {
 }
 
 export interface AppContextState {
+	user: { firstName: string; lastName: string }
 	isLoggedIn: boolean
 	products: Product[]
 	dispatch: DispatchAppContext
@@ -58,6 +60,12 @@ const appContextReducer = (state: AppContextState, action: AppContextReducerActi
 				isLoggedIn: false,
 			}
 
+		case "UPDATE_USER":
+			return {
+				...state,
+				user: payload,
+			}
+
 		default:
 			console.error(`Undefined reducer action type "${type}"`)
 			return state
@@ -76,7 +84,7 @@ interface AppContextProviderProps {
 }
 
 export interface AppContextReducerAction {
-	type: "ADD_PRODUCT" | "LOGIN" | "LOGOUT"
+	type: "ADD_PRODUCT" | "LOGIN" | "LOGOUT" | "UPDATE_USER"
 	payload?: any
 }
 

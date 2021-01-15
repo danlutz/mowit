@@ -1,11 +1,12 @@
+import React, { useContext } from "react"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import * as React from "react"
 import { ColorSchemeName } from "react-native"
 import Onboarding from "../components/Onboarding/Onboarding"
 import { CreateAccount } from "../components/Auth/CreateAccount"
 import { SignIn } from "../components/Auth/SignIn"
+import AppContext from "../context/AppContext"
 
 // NEW IMPORT FOR NAVIGATION
 import { ProfileScreen, ExploreScreen, AddListingScreen } from "../screens/HomeScreens"
@@ -97,35 +98,12 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 	//Simulate App Loading:
 	const [isLoading, setIsLoading] = React.useState(true)
 
-	// Simulate User Logged In:
-	const [userLoggedIn, setUserLoggedIn] = React.useState(false)
+	const { isLoggedIn } = useContext(AppContext)
 
 	React.useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false)
 		}, 1500)
-	}, [])
-
-	//Fake Login Functions
-	const autContext = React.useMemo(() => {
-		return {
-			signIn: () => {
-				setIsLoading(false)
-				setUserLoggedIn(true)
-			},
-			signUp: () => {
-				setIsLoading(false)
-				setUserLoggedIn(true)
-			},
-			signOut: () => {
-				setIsLoading(false)
-				setUserLoggedIn(false)
-			},
-			emailVerified: () => {
-				setIsLoading(false)
-				setUserLoggedIn(true)
-			},
-		}
 	}, [])
 
 	//Show Loading Screen
@@ -134,10 +112,11 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 	}
 
 	return (
-		<AuthContext.Provider value={autContext}>
-			<NavigationContainer linking={LinkingConfiguration}>
-				{userLoggedIn ? <Home /> : <AuthStackScreen />}
-			</NavigationContainer>
-		</AuthContext.Provider>
+		<NavigationContainer
+			linking={LinkingConfiguration}
+			theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+		>
+			{isLoggedIn ? <Home /> : <AuthStackScreen />}
+		</NavigationContainer>
 	)
 }
