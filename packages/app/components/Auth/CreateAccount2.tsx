@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Button, TextInput, StyleSheet, Alert } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
 import { AuthContext } from "../../constants/context"
 import { useNavigation } from "@react-navigation/native"
+import AppContext from "../../context/AppContext"
 
 import firebase from "firebase"
 
@@ -12,9 +13,10 @@ export const CreateAccount2 = () => {
 	const [email, oncChangeEmailText] = React.useState("")
 	const [password, onChangePasswordText] = React.useState("")
 	const [passwordRepeat, onchangePasswordRepeatText] = React.useState("")
+	const { dispatch } = useContext(AppContext)
 
 	const onLoginSuccess = () => {
-		navigation.navigate("Verification")
+		dispatch({ type: "LOGIN" })
 	}
 	const onLoginFailure = (errorMessage) => {
 		Alert.alert(errorMessage)

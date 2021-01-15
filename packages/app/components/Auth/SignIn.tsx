@@ -21,17 +21,6 @@ export const SignIn = ({ props }: Props) => {
 	const onLoginFailure = (errorMessage) => {
 		Alert.alert(errorMessage)
 	}
-	//MARK: FAKE USER VALIDATION
-	const onlogin = () => {
-		if (eMailText == "" || passwordText == "") {
-			dispatch({ type: "LOGIN" })
-			//Alert.alert("E-Mail Adresse und Passwort darf nicht leer sein")
-		} else {
-			if (eMailText.toLowerCase() == "michi@rentit.com" && passwordText == "123456") {
-			} else {
-				Alert.alert("E-Mail Adresse oder Passwort falsch")
-			}
-		}
 
 	const loginUserWithEMailAndPassword = async () => {
 		await firebase
