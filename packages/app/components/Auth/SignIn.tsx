@@ -7,25 +7,35 @@ import { OnboardingAuthStackParameters } from "../../constants/types"
 import { AuthContext } from "../../constants/context"
 import { useNavigation } from "@react-navigation/native"
 
+import firebase from "firebase"
+
 export const SignIn = ({ props }: Props) => {
 	const { signIn } = React.useContext(AuthContext)
 	const navigation = useNavigation()
 	const [eMailText, oncChangeEmailText] = React.useState("")
 	const [passwordText, onChangePasswordText] = React.useState("")
 
-	//MARK: FAKE USER VALIDATION
-	const onlogin = () => {
-		if (eMailText == "" || passwordText == "") {
-			signIn()
-			//Alert.alert("E-Mail Adresse und Passwort darf nicht leer sein")
-		} else {
-			if (eMailText.toLowerCase() == "michi@rentit.com" && passwordText == "123456") {
-			} else {
-				Alert.alert("E-Mail Adresse oder Passwort falsch")
-			}
-		}
+	const onLoginSuccess = () => {
+		signIn()
+	}
+	const onLoginFailure = (errorMessage) => {
+		Alert.alert(errorMessage)
+	}
 
-		console.log(`email: ${eMailText} - password ${passwordText}`)
+	const loginUserWithEMailAndPassword = async () => {
+		await firebase
+			.auth()
+			.signInWithEmailAndPassword(eMailText, passwordText)
+			.then(onLoginSuccess.bind(this))
+			.catch((error) => {
+				let errorCode = error.code
+				let errorMessage = error.message
+				if (errorCode == "auth/weak-password") {
+					onLoginFailure.bind(this)("Weak Password!")
+				} else {
+					onLoginFailure.bind(this)(errorMessage)
+				}
+			})
 	}
 
 	return (
@@ -46,7 +56,11 @@ export const SignIn = ({ props }: Props) => {
 				placeholder={"Passwort"}
 			/>
 			<View style={styles.button}>
-				<Button color="#ffffff" title="Anmelden" onPress={() => onlogin()} />
+				<Button
+					color="#ffffff"
+					title="Anmelden"
+					onPress={() => loginUserWithEMailAndPassword()}
+				/>
 			</View>
 			<View style={styles.links}>
 				<Button

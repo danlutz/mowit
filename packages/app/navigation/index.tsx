@@ -35,7 +35,6 @@ import {
 } from "../screens/AuthScreens"
 import LinkingConfiguration from "./LinkingConfiguration"
 import SplashScreen from "../components/SplashScreen"
-
 import { AuthContext } from "../constants/context"
 
 // If you are not familiar with React Navigation, we recommend going through the

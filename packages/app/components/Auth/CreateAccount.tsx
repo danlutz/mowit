@@ -27,11 +27,21 @@ export const CreateAccount = () => {
 				placeholder={"Nachname"}
 			/>
 			<View style={styles.button}>
-			<Button color='#FFF' title="Weiter" onPress={() => navigation.push("CreateAccount2")} />
+				<Button
+					color="#FFF"
+					title="Weiter"
+					onPress={() => navigation.push("CreateAccount2")}
+				/>
 			</View>
-			<Text style={{paddingTop: 10}}>Beim Registrieren, akzeptierst du unsere AGB und Datenschutzbestimmung </Text>
+			<Text style={{ paddingTop: 10 }}>
+				Beim Registrieren, akzeptierst du unsere AGB und Datenschutzbestimmung{" "}
+			</Text>
 			<View style={styles.links}>
-			<Button color="#E67E22" title="Du hast bereits einen Account? Jetzt anmelden" onPress={() => navigation.goBack()} />
+				<Button
+					color="#E67E22"
+					title="Du hast bereits einen Account? Jetzt anmelden"
+					onPress={() => navigation.goBack()}
+				/>
 			</View>
 		</ScreenContainer>
 	)
@@ -39,10 +49,10 @@ export const CreateAccount = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#FFF',
+		backgroundColor: "#FFF",
 		alignItems: "center",
 		paddingTop: 200,
-		fontFamily: 'Helvetica Neue'
+		fontFamily: "Helvetica Neue",
 	},
 	rentIT: {
 		paddingTop: 10,
@@ -50,40 +60,36 @@ const styles = StyleSheet.create({
 		fontSize: 32,
 		paddingBottom: 20,
 		fontWeight: "bold",
-		textAlign: 'center'
+		textAlign: "center",
 	},
 
 	textfield: {
-		height: 40, 
+		height: 40,
 		width: 340,
 		marginBottom: 10,
-		borderColor: '#F7F9FC', 
+		borderColor: "#F7F9FC",
 		borderWidth: 1,
-		color: '#000',
-		backgroundColor: '#F7F9FC'
+		color: "#000",
+		backgroundColor: "#F7F9FC",
 	},
 	links: {
 		marginTop: 30,
-		
-
 	},
 	linkszwei: {
 		marginBottom: 30,
-		
-
 	},
 	button: {
 		marginTop: 30,
-		backgroundColor: '#E67E22',
+		backgroundColor: "#E67E22",
 		borderRadius: 4,
-		color: '#FFFFFF',
-		shadowColor: '#111111',
+		color: "#FFFFFF",
+		shadowColor: "#111111",
 		shadowOpacity: 0.2,
-		textTransform: 'uppercase',
+		textTransform: "uppercase",
 		width: 220,
 		shadowOffset: {
 			width: 0,
 			height: 2,
-		}
+		},
 	},
 })
