@@ -15,6 +15,11 @@ const GRAPHQL_ENDPOINT = "https://graphql-weather-api.herokuapp.com/"
 const client = new ApolloClient({
 	uri: GRAPHQL_ENDPOINT,
 	cache: new InMemoryCache(),
+	defaultOptions: {
+		query: {
+			fetchPolicy: "network-only",
+		},
+	},
 })
 
 export default function App() {
@@ -27,7 +32,7 @@ export default function App() {
 		<ApolloProvider client={client}>
 			<AppContextProvider>
 				<SafeAreaProvider>
-					<Navigation colorScheme={colorScheme} />
+					<Navigation colorScheme="light" />
 					<StatusBar />
 				</SafeAreaProvider>
 			</AppContextProvider>

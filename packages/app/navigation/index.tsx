@@ -136,10 +136,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 
 	return (
 		<AuthContext.Provider value={autContext}>
-			<NavigationContainer
-				linking={LinkingConfiguration}
-				theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-			>
+			<NavigationContainer linking={LinkingConfiguration}>
 				{userLoggedIn ? <Home /> : <AuthStackScreen />}
 			</NavigationContainer>
 		</AuthContext.Provider>
