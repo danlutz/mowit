@@ -1,15 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Alert, Button, TextInput, StyleSheet } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
 import { AuthContext } from "../../constants/context"
 import { useNavigation } from "@react-navigation/native"
 
+import { registration } from "../../../api/firebase/firebaseAuth"
+
 export const CreateAccount = () => {
 	const { signUp } = React.useContext(AuthContext)
 	const navigation = useNavigation()
 	const [vorname, oncChangeVornameText] = React.useState("")
 	const [nachname, onChangeNachnameText] = React.useState("")
+	const [email, oncChangeEmailText] = React.useState("")
+	const [password, onChangePasswordText] = React.useState("")
+	const [passwordRepeat, onchangePasswordRepeatText] = React.useState("")
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -26,11 +31,32 @@ export const CreateAccount = () => {
 				value={nachname}
 				placeholder={"Nachname"}
 			/>
+			<TextInput
+				style={styles.textfield}
+				onChangeText={(text) => oncChangeEmailText(text)}
+				value={email}
+				keyboardType={"email-address"}
+				placeholder={"E-Mail"}
+			/>
+			<TextInput
+				secureTextEntry={true}
+				style={styles.textfield}
+				onChangeText={(text) => onChangePasswordText(text)}
+				value={password}
+				placeholder={"Passwort"}
+			/>
+			<TextInput
+				secureTextEntry={true}
+				style={styles.textfield}
+				onChangeText={(text) => onchangePasswordRepeatText(text)}
+				value={passwordRepeat}
+				placeholder={"Passwort bestätigen"}
+			/>
 			<View style={styles.button}>
 				<Button
 					color="#FFF"
-					title="Weiter"
-					onPress={() => navigation.push("CreateAccount2")}
+					title="Registrieren"
+					onPress={() => registration(email, password, vorname, nachname)}
 				/>
 			</View>
 			<Text style={{ paddingTop: 10 }}>
