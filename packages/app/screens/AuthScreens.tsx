@@ -4,7 +4,6 @@ import { SignIn } from "../components/Auth/SignIn"
 import { CreateAccount } from "../components/Auth/CreateAccount"
 import { ForgotPassword } from "../components/Auth/ForgotPassword"
 import { Verification } from "../components/Auth/Verification"
-import { CreateAccount2 } from "../components/Auth/CreateAccount2"
 
 const styles = StyleSheet.create({
 	container: {
@@ -37,14 +36,6 @@ export const CreateAccountScreen = () => {
 	return (
 		<ScreenContainer>
 			<CreateAccount />
-		</ScreenContainer>
-	)
-}
-
-export const CreateAccountScreen2 = () => {
-	return (
-		<ScreenContainer>
-			<CreateAccount2 />
 		</ScreenContainer>
 	)
 }

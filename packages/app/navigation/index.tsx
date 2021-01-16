@@ -29,7 +29,6 @@ import {
 } from "../constants/types"
 import {
 	CreateAccountScreen,
-	CreateAccountScreen2,
 	ForgotPasswordScreen,
 	SignInScreen,
 	VerificationScreen,
@@ -80,7 +79,6 @@ const AuthStackScreen = () => (
 		<OnboardingAuthStack.Screen name="Onboarding" component={Onboarding} />
 		<OnboardingAuthStack.Screen name="SignIn" component={SignInScreen} />
 		<OnboardingAuthStack.Screen name="CreateAccount" component={CreateAccountScreen} />
-		<OnboardingAuthStack.Screen name="CreateAccount2" component={CreateAccountScreen2} />
 		<OnboardingAuthStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
 		<OnboardingAuthStack.Screen name="Verification" component={VerificationScreen} />
 	</OnboardingAuthStack.Navigator>
@@ -114,7 +112,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 	return (
 		<NavigationContainer
 			linking={LinkingConfiguration}
-			theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+			theme={colorScheme === "dark" ? DefaultTheme : DefaultTheme}
 		>
 			{isLoggedIn ? <Home /> : <AuthStackScreen />}
 		</NavigationContainer>
