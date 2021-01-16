@@ -5,6 +5,8 @@ import { Picker } from "@react-native-picker/picker"
 import * as Permissions from "expo-permissions"
 import * as FileSystem from "expo-file-system"
 import * as ImagePicker from "expo-image-picker"
+import { useNavigation } from "@react-navigation/native"
+import * as Random from "expo-random"
 
 import { Text } from "../Themed"
 
@@ -27,6 +29,8 @@ const validateUserInput = (name: string, description: string, rentPriceEuros: nu
 
 export const AddListing = () => {
 	const { dispatch } = useContext(AppContext)
+	const navigation = useNavigation()
+
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
 	const [selectedCategory, setSelectedCategory] = useState(availableCategories[0])
@@ -45,6 +49,7 @@ export const AddListing = () => {
 		}
 
 		const product: Product = {
+			id: Random.getRandomBytes(5).toString(),
 			name,
 			description,
 			rentPriceEurosPerHours: Number(rentPriceEurosPerHours),
@@ -57,7 +62,12 @@ export const AddListing = () => {
 			payload: product,
 		})
 
-		Alert.alert("Produkt wurde platziert")
+		Alert.alert(
+			"Produktplatzierung erfolgreich",
+			"",
+			[{ text: "OK", onPress: () => navigation.navigate("Explore") }],
+			{ cancelable: true },
+		)
 	}
 
 	const onCategoryButtonClick = () => {
