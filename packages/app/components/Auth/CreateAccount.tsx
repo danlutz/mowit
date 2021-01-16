@@ -4,6 +4,7 @@ import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
 import { AuthContext } from "../../constants/context"
 import { useNavigation } from "@react-navigation/native"
+import AppContext from "../../context/AppContext"
 
 import { registration } from "../../../api/firebase/firebaseAuth"
 
@@ -15,6 +16,11 @@ export const CreateAccount = () => {
 	const [email, oncChangeEmailText] = React.useState("")
 	const [password, onChangePasswordText] = React.useState("")
 	const [passwordRepeat, onchangePasswordRepeatText] = React.useState("")
+	const { dispatch } = useContext(AppContext)
+
+	const onLoginSuccess = () => {
+		dispatch({ type: "LOGIN" })
+	}
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -56,7 +62,9 @@ export const CreateAccount = () => {
 				<Button
 					color="#FFF"
 					title="Registrieren"
-					onPress={() => registration(email, password, vorname, nachname)}
+					onPress={() =>
+						registration(email, password, vorname, nachname).then(onLoginSuccess)
+					}
 				/>
 			</View>
 			<Text style={{ paddingTop: 10 }}>

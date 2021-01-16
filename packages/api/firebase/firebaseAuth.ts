@@ -5,25 +5,16 @@ import { Alert } from "react-native"
 import AppContext from "../../app/context/AppContext"
 
 export async function registration(email, password, lastName, firstName) {
-	const { dispatch } = useContext(AppContext)
-
-	const onLoginSuccess = () => {
-		dispatch({ type: "LOGIN" })
-	}
-
 	try {
 		await firebase.auth().createUserWithEmailAndPassword(email, password)
 		const currentUser = firebase.auth().currentUser
 
 		const db = firebase.firestore()
-		db.collection("users")
-			.doc(currentUser.uid)
-			.set({
-				email: currentUser.email,
-				lastName: lastName,
-				firstName: firstName,
-			})
-			.then(onLoginSuccess)
+		db.collection("users").doc(currentUser.uid).set({
+			email: currentUser.email,
+			lastName: lastName,
+			firstName: firstName,
+		})
 	} catch (err) {
 		Alert.alert("There is something wrong!", err.message)
 	}
