@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, Component } from "react"
 import { Alert, Button, TextInput, StyleSheet, Keyboard, Image } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { Picker } from "@react-native-picker/picker"
@@ -9,6 +9,8 @@ import * as ImagePicker from "expo-image-picker"
 import { Text } from "../Themed"
 
 import AppContext, { Product } from "../../context/AppContext"
+import { useAssets } from "expo-asset"
+import { TouchableOpacity } from "react-native-gesture-handler"
 
 const availableCategories = [
 	"Elektrogeräte",
@@ -34,7 +36,6 @@ export const AddListing = () => {
 	const [pickedImage, setPickedImage] = useState("")
 
 	const onSubmit = () => {
-		setIsLoading(true)
 		const isValid = validateUserInput(name, description, Number(rentPriceEurosPerHours))
 
 		if (!isValid) {
@@ -57,7 +58,6 @@ export const AddListing = () => {
 		})
 
 		Alert.alert("Produkt wurde platziert")
-		setIsLoading(false)
 	}
 
 	const onCategoryButtonClick = () => {
@@ -87,25 +87,27 @@ export const AddListing = () => {
 			})
 			console.log(persistentPath)
 			setPickedImage(persistentPath)
-			Keyboard.dismiss()
 		} catch (error) {
 			console.warn(error)
 		}
 	}
 
+	const getPickedImageOrPlaceHolder = () => {
+		if (pickedImage == "") {
+			return require("../../assets/images/placeholder.png")
+		} else {
+			return {
+				uri: pickedImage,
+			}
+		}
+	}
+
 	return (
 		<ScreenContainer style={styles.container}>
-			<Text style={styles.headline}>
-				Produkt platzieren {isLoading ? "isLoading" : "not isLoading"}
-			</Text>
-			<Button onPress={addImpressionHandler} title="Camera"></Button>
-			<Image
-				style={styles.previewImage}
-				source={{
-					uri: pickedImage,
-				}}
-			/>
-
+			<Text style={styles.headline}>Produkt platzieren</Text>
+			<TouchableOpacity style={styles.touchableImage} onPress={addImpressionHandler}>
+				<Image style={styles.touchableImage} source={getPickedImageOrPlaceHolder()} />
+			</TouchableOpacity>
 			<TextInput
 				style={styles.textInput}
 				value={name}
@@ -209,5 +211,10 @@ const styles = StyleSheet.create({
 	previewImage: {
 		width: 50,
 		height: 50,
+	},
+	touchableImage: {
+		width: 100,
+		height: 100,
+		padding: 10,
 	},
 })
