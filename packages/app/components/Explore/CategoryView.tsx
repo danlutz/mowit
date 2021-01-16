@@ -15,7 +15,7 @@ export const CategoryView = () => {
 			<Text>Wetter Preview: {<Temperature />}</Text>
 			<Text>Produkte</Text>
 			{products.map((product) => {
-				return <Product key={product.name} product={product} />
+				return <Product key={product.id} product={product} />
 			})}
 		</ScreenContainer>
 	)

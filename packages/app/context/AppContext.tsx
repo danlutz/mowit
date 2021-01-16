@@ -3,6 +3,7 @@ import React, { createContext, useReducer } from "react"
 const MOCK_PRODUCTS: Product[] = []
 
 export interface Product {
+	id: string
 	name: string
 	description: string
 	/**

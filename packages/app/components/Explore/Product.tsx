@@ -5,10 +5,11 @@ import { Product as ProductInterface } from "../../context/AppContext"
 import { Text } from "../Themed"
 
 const Product = ({ product }: Props) => {
-	const { name, description, rentPriceEurosPerHours, image } = product
+	const { name, description, rentPriceEurosPerHours, image, id } = product
 
 	return (
 		<View>
+			<Text>{`ID: ${id}`}</Text>
 			<Text>{name}</Text>
 			<Image
 				source={{
