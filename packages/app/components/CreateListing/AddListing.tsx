@@ -136,7 +136,6 @@ export const AddListing = () => {
 				style={styles.textInput}
 				editable={!isLoading}
 			/>
-			<TextInput value={String(rentPriceEurosPerHours)} />
 			<TextInput
 				value={String(rentPriceEurosPerHours)}
 				onChangeText={(value) => setRentPriceEurosPerHours(Number(value))}
@@ -157,7 +156,7 @@ export const AddListing = () => {
 				})}
 			</Picker>
 
-			<Button title="Produkt platzieren" onPress={onSubmit} />
+			<Button style={styles.button} title="Produkt platzieren" onPress={onSubmit} />
 		</ScreenContainer>
 	)
 }
@@ -183,8 +182,8 @@ const styles = StyleSheet.create({
 	textInput: {
 		width: "80%",
 		marginLeft: "auto",
-		marginTop: 0,
-		marginBottom: 0,
+		marginTop: 10,
+		marginBottom: 10,
 		marginRight: "auto",
 		backgroundColor: "#F7F9FC",
 		borderRadius: 10,
@@ -217,14 +216,22 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		display: "flex",
+		zIndex: 10,
+		backgroundColor: '#ffffff'
 	},
 	previewImage: {
 		width: 50,
 		height: 50,
 	},
+	button: {
+		zIndex: -1
+	},
 	touchableImage: {
 		width: 100,
 		height: 100,
-		padding: 10,
+		marginTop: 10,
+		marginBottom: 40,
+		marginLeft: 'auto',
+		marginRight: 'auto'
 	},
 })
