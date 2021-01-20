@@ -10,7 +10,7 @@ export const CategoryView = () => {
 	const { products } = useContext(AppContext)
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer style={styles.container}>
 			<Text style={styles.placeholderText}>Category View Screen</Text>
 			<Text>Wetter Preview: {<Temperature />}</Text>
 			<Text>Produkte</Text>
@@ -25,4 +25,7 @@ const styles = StyleSheet.create({
 	placeholderText: {
 		paddingBottom: 30,
 	},
+	container: {
+		width: '100%',
+	}
 })
