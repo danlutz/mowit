@@ -8,10 +8,14 @@ import Product from "./Product"
 export const CategoryDetailView = ({ category }: Props) => {
 	const { products } = useContext(AppContext)
 
+	const productsInCategory = products.filter((product) => {
+		product.category === category
+	})
+
 	return (
 		<ScreenContainer>
 			<Text>{category}</Text>
-			{products.map((product) => {
+			{productsInCategory.map((product) => {
 				return <Product key={product.id} product={product} />
 			})}
 			<Button title="RENT IT" onPress={() => Alert.alert("RENT IT ")} />
