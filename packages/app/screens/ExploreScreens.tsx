@@ -45,10 +45,10 @@ export const CategoryDetailViewScreen = ({
 		</ScreenContainer>
 	)
 }
-export const ProductDetailViewScreen = () => {
+export const ProductDetailViewScreen = ({ route: { params } }) => {
 	return (
 		<ScreenContainer>
-			<ProductDetailView />
+			<ProductDetailView id={params.productId} />
 		</ScreenContainer>
 	)
 }

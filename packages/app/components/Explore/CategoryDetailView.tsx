@@ -2,14 +2,14 @@ import React, { useContext } from "react"
 import { Alert, Button } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import AppContext from "../../context/AppContext"
-import { View, Text } from "../Themed"
+import { Text } from "../Themed"
 import Product from "./Product"
 
 export const CategoryDetailView = ({ category }: Props) => {
 	const { products } = useContext(AppContext)
 
 	const productsInCategory = products.filter((product) => {
-		product.category === category
+		return product.category === category
 	})
 
 	return (

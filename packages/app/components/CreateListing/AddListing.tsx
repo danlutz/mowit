@@ -1,5 +1,5 @@
-import React, { useState, useContext, Component } from "react"
-import { Alert, Button, TextInput, StyleSheet, Keyboard, Image } from "react-native"
+import React, { useState, useContext } from "react"
+import { Alert, Button, TextInput, StyleSheet, Image } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { Picker } from "@react-native-picker/picker"
 import * as Permissions from "expo-permissions"

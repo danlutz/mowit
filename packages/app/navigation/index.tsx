@@ -20,7 +20,7 @@ import {
 	ChangePasswordScreen,
 	EMailVerifyScreen,
 } from "../screens/ProfileScreens"
-import { CategoryDetailViewScreen } from "../screens/ExploreScreens"
+import { CategoryDetailViewScreen, ProductDetailViewScreen } from "../screens/ExploreScreens"
 
 import {
 	ExploreStackParameters,
@@ -66,6 +66,7 @@ const ExploreStackScreen = () => (
 	<ExploreStack.Navigator>
 		<ExploreStack.Screen name="CategoryView" component={ExploreScreen} />
 		<ExploreStack.Screen name="CategoryDetailView" component={CategoryDetailViewScreen} />
+		<ExploreStack.Screen name="ProductDetailView" component={ProductDetailViewScreen} />
 	</ExploreStack.Navigator>
 )
 
