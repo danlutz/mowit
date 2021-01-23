@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { Alert, Button, StyleSheet, FlatList } from "react-native"
+import { Alert, Button, StyleSheet, FlatList, Image } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { useNavigation } from "@react-navigation/native"
 
@@ -20,7 +20,7 @@ export const CategoryView = () => {
 
 			<FlatList
 				data={categories}
-				renderItem={({ item: category }) => {
+				renderItem={({ item: { title: category, image } }) => {
 					return (
 						<TouchableOpacity
 							onPress={() => navigate("CategoryDetailView", { category })}
@@ -36,6 +36,7 @@ export const CategoryView = () => {
 									backgroundColor: "#CCC",
 								}}
 							>
+								<Image source={image}></Image>
 								<Text>{category}</Text>
 							</View>
 						</TouchableOpacity>

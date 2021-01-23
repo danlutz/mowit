@@ -25,7 +25,7 @@ export const AddListing = () => {
 
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
-	const [selectedCategory, setSelectedCategory] = useState(categories[0])
+	const [selectedCategory, setSelectedCategory] = useState(categories[0]?.title)
 	const [rentPriceEurosPerHours, setRentPriceEurosPerHours] = useState(0)
 	const [categoryDisplayed, setCategoryDisplayed] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -143,7 +143,7 @@ export const AddListing = () => {
 				onValueChange={(value) => setSelectedCategory(value as string)}
 				style={categoryDisplayed ? styles.pickerActive : styles.picker}
 			>
-				{categories.map((category) => {
+				{categories.map(({ title: category }) => {
 					return <Picker.Item key={category} label={category} value={category} />
 				})}
 			</Picker>
