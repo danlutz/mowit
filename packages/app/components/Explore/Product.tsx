@@ -9,11 +9,14 @@ import { Text } from "../Themed"
 
 const Product = ({ product }: Props) => {
 	const { navigate } = useNavigation()
-	const { name, description, rentPriceEurosPerHours, image, id } = product
+	const { name, description, rentPriceEurosPerHours, image, id, username } = product
+
+	console.log(image)
 
 	return (
 		<TouchableOpacity onPress={() => navigate("ProductDetailView", { productId: id })}>
 			<View style={styles.container}>
+				<Image source={{ uri: image }} />
 				<View style={styles.imageContainer}>
 					{image ? <Image source={{ uri: image }} /> : <Text>Image</Text>}
 				</View>
@@ -30,7 +33,7 @@ const Product = ({ product }: Props) => {
 								type="ionicon"
 								color="#000"
 							></Icon>
-							<Text>Hans Mustermann</Text>
+							<Text>{username}</Text>
 						</View>
 						<View style={styles.row}>
 							<Icon

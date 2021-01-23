@@ -15,6 +15,7 @@ export interface Product {
 	 */
 	image?: string
 	category: string
+	username: string
 }
 
 export interface Profile {

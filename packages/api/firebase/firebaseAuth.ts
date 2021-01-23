@@ -35,3 +35,26 @@ export async function loggingOut() {
 		Alert.alert("There is something wrong!", err.message)
 	}
 }
+
+export async function getUserName() {
+	const db = firebase.firestore()
+	const currentUser = firebase.auth().currentUser
+
+	const documentReference = db.collection("users").doc(currentUser?.uid)
+
+	const doc = await documentReference.get()
+
+	if (doc.exists) {
+		const {firstName, lastName} = doc.data()
+
+		return `${firstName} ${lastName}`
+	}
+
+	
+
+	return "Max Mustermann"
+
+
+
+
+}

@@ -15,6 +15,8 @@ import AppContext, { Product } from "../../context/AppContext"
 
 import { TouchableOpacity } from "react-native-gesture-handler"
 
+import { getUserName } from "../../../api/firebase/firebaseAuth"
+
 const validateUserInput = (name: string, description: string, rentPriceEuros: number) => {
 	return !!name && !!description && rentPriceEuros > 0
 }
@@ -31,7 +33,7 @@ export const AddListing = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [pickedImage, setPickedImage] = useState("")
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
 		const isValid = validateUserInput(name, description, Number(rentPriceEurosPerHours))
 
 		if (!isValid) {
@@ -40,6 +42,10 @@ export const AddListing = () => {
 			return
 		}
 
+		const userName = await getUserName()
+
+		console.log(userName)
+
 		const product: Product = {
 			id: Random.getRandomBytes(5).toString(),
 			name,
@@ -47,6 +53,7 @@ export const AddListing = () => {
 			rentPriceEurosPerHours: Number(rentPriceEurosPerHours),
 			category: selectedCategory,
 			image: pickedImage,
+			username: userName,
 		}
 
 		dispatch({
