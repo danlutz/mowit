@@ -9,19 +9,11 @@ import { useNavigation } from "@react-navigation/native"
 import * as Random from "expo-random"
 
 import { Text } from "../Themed"
+import categories from "../../constants/categories"
 
 import AppContext, { Product } from "../../context/AppContext"
-import { useAssets } from "expo-asset"
-import { TouchableOpacity } from "react-native-gesture-handler"
 
-const availableCategories = [
-	"Elektrogeräte",
-	"Gartengeräte",
-	"Werkzeug",
-	"Heizen & Klima",
-	"Handwerkzeuge",
-	"Kleingeräte",
-]
+import { TouchableOpacity } from "react-native-gesture-handler"
 
 const validateUserInput = (name: string, description: string, rentPriceEuros: number) => {
 	return !!name && !!description && rentPriceEuros > 0
@@ -33,7 +25,7 @@ export const AddListing = () => {
 
 	const [name, setName] = useState("")
 	const [description, setDescription] = useState("")
-	const [selectedCategory, setSelectedCategory] = useState(availableCategories[0])
+	const [selectedCategory, setSelectedCategory] = useState(categories[0])
 	const [rentPriceEurosPerHours, setRentPriceEurosPerHours] = useState(0)
 	const [categoryDisplayed, setCategoryDisplayed] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -151,7 +143,7 @@ export const AddListing = () => {
 				onValueChange={(value) => setSelectedCategory(value as string)}
 				style={categoryDisplayed ? styles.pickerActive : styles.picker}
 			>
-				{availableCategories.map((category) => {
+				{categories.map((category) => {
 					return <Picker.Item key={category} label={category} value={category} />
 				})}
 			</Picker>
@@ -217,21 +209,21 @@ const styles = StyleSheet.create({
 		right: 0,
 		display: "flex",
 		zIndex: 10,
-		backgroundColor: '#ffffff'
+		backgroundColor: "#ffffff",
 	},
 	previewImage: {
 		width: 50,
 		height: 50,
 	},
 	button: {
-		zIndex: -1
+		zIndex: -1,
 	},
 	touchableImage: {
 		width: 100,
 		height: 100,
 		marginTop: 10,
 		marginBottom: 40,
-		marginLeft: 'auto',
-		marginRight: 'auto'
+		marginLeft: "auto",
+		marginRight: "auto",
 	},
 })

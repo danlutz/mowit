@@ -33,10 +33,15 @@ export const CategoryViewScreen = () => {
 	)
 }
 
-export const CategoryDetailViewScreen = () => {
+export const CategoryDetailViewScreen = ({
+	route: { params },
+}: {
+	route: { params: { category: string } }
+}) => {
+	console.log({ params })
 	return (
 		<ScreenContainer>
-			<CategoryDetailView />
+			<CategoryDetailView category={params.category} />
 		</ScreenContainer>
 	)
 }
