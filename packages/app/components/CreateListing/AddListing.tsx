@@ -8,8 +8,6 @@ import * as ImagePicker from "expo-image-picker"
 import { useNavigation } from "@react-navigation/native"
 import * as Random from "expo-random"
 
-import * as Analytics from "expo-firebase-analytics"
-
 import { Text } from "../Themed"
 import categories from "../../constants/categories"
 
@@ -70,13 +68,7 @@ export const AddListing = () => {
 				{
 					text: "OK",
 					onPress: () => {
-						navigation.navigate("Explore"),
-							Analytics.logEvent("PRODUCT PLACED", {
-								id: product.id,
-								name: product.name,
-								category: product.category,
-								rentPrice: product.rentPriceEurosPerHours,
-							})
+						navigation.navigate("Explore")
 					},
 				},
 			],
