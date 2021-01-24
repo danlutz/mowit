@@ -108,3 +108,25 @@ export function deleteAccount(andThen) {
 		{ cancelable: true },
 	)
 }
+
+export function resetPassword(userEmailAddress) {
+	var auth = firebase.auth();
+	var emailAddress = userEmailAddress;
+
+	auth.sendPasswordResetEmail(emailAddress).then(function() {
+	Alert.alert(
+		"Initiert",
+		"Falls du einen Account bei uns hast bekommst du in kürze eine E-Mail zum Zrücksetzen deines Passwords",
+		[{ text: "OK", onPress: () => {} }],
+		{ cancelable: true },
+				
+	)
+	}).catch(function(error) {
+	Alert.alert(
+		"Ooops",
+		`${error}`,
+		[{ text: "OK", onPress: () => {} }],
+		{ cancelable: true },
+	)
+	});
+}

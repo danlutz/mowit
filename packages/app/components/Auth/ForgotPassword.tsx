@@ -2,6 +2,7 @@ import React from "react"
 import { Alert, Button, TextInput, StyleSheet } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
+import { resetPassword } from "../../../api/firebase/firebaseAuth"
 
 export const ForgotPassword = () => {
 	const [eMailText, oncChangeEmailText] = React.useState("")
