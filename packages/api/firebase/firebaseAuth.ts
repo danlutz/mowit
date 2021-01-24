@@ -80,3 +80,31 @@ export function updateUserPassword(userNewPassword, andThen) {
 	Alert.alert(error)
 	});
 }
+
+export function deleteAccount(andThen) {
+	const user = firebase.auth().currentUser;
+	
+	Alert.alert(
+		"Account löschen?",
+		"Bist du sicher, dass du deinen Account löschen willst?",
+		[
+			{ text: "Ja", onPress: () => {
+			user?.delete().then(function() {
+				Alert.alert(
+					"Dein Account wurder erfolgreich gelöscjht",
+					"Du wurdest aus der App ausgelogged",
+					[{ text: "OK", onPress: () => andThen }],
+					{ cancelable: true },
+				)
+			}).catch(function(error) {
+				Alert.alert(error)
+				})
+			}
+			},
+			{
+				text: "NEIN"
+			}
+		],
+		{ cancelable: true },
+	)
+}

@@ -20,11 +20,7 @@ export const ForgotPassword = () => {
 				<Button
 					color="#fff"
 					title="ZURÜCKSETZEN"
-					onPress={() =>
-						Alert.alert(
-							"Du solltest in Kürze eine Email erhalten um dein Kennwort zurückzusetzen",
-						)
-					}
+					onPress={() => resetPassword(eMailText.toLowerCase())}
 				/>
 			</View>
 		</ScreenContainer>
@@ -53,7 +49,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		borderColor: "#F7F9FC",
 		borderWidth: 1,
-		color: "#F7F9FC",
+		color: "#000",
 		backgroundColor: "#F7F9FC",
 	},
 	links: {
