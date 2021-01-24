@@ -1,4 +1,3 @@
-import { useContext } from "react"
 import * as firebase from "firebase"
 import "firebase/firestore"
 import { Alert } from "react-native"
@@ -53,8 +52,31 @@ export async function getUserName() {
 	
 
 	return "Max Mustermann"
+}
+
+export function sendVerificationEmail() {
+	const user = firebase.auth().currentUser
+
+	user?.sendEmailVerification().then(function() {
+		Alert.alert("Email sent")	
+	}).catch(function(error) {
+		Alert.alert(error)
+	})
+}
 
 
+export function updateUserPassword(userNewPassword, andThen) {
 
+	const user = firebase.auth().currentUser;
 
+	user.updatePassword(userNewPassword).then(function() {
+		Alert.alert(
+			"Passwort wurde erfolgreich geändert",
+			"Bitte logge dich erneut in der App ein",
+			[{ text: "OK", onPress: () => andThen }],
+			{ cancelable: true },
+		)
+	}).catch(function(error) {
+	Alert.alert(error)
+	});
 }

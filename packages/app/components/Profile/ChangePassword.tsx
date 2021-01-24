@@ -1,13 +1,31 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Alert, Button, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
 import { ScreenContainer } from "react-native-screens"
 import { View, Text } from "../Themed"
+import { updateUserPassword } from "../../../api/firebase/firebaseAuth"
+import AppContext from "../../context/AppContext"
 
 export const ChangePassword = () => {
-	const [password, actualPassword] = useState("")
 	const [newPassword, setNewPassword] = useState("")
 	const [confirmPassword, setConfirmPassword] = useState("")
+
+	const { dispatch } = useContext(AppContext)
+
+	const onChangeSuccess = () => {
+		dispatch({ type: "LOGOUT" })
+	}
+
+	const validatePassword = (userNewPassword, userConfirmPassword) => {
+		console.log(newPassword)
+		console.log(confirmPassword)
+
+		if (userNewPassword == userConfirmPassword) {
+			updateUserPassword(userConfirmPassword, onChangeSuccess())
+		} else {
+			Alert.alert("Die eingebenen Passwörter stimmen nicht überein.")
+		}
+	}
 
 	return (
 		<ScreenContainer style={styles.container}>
@@ -24,21 +42,22 @@ export const ChangePassword = () => {
 			</View>
 			<TextInput
 				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
-				placeholder={"aktuelles Passwort"}
-			/>
-			<TextInput
-				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
+				onChangeText={(text) => setNewPassword(text)}
+				secureTextEntry={true}
 				placeholder={"neues Passwort"}
 			/>
 			<TextInput
 				style={styles.textfield}
-				onChangeText={(text) => oncChangeEmailText(text)}
+				onChangeText={(text) => setConfirmPassword(text)}
+				secureTextEntry={true}
 				placeholder={"neues Passwort bestätigen"}
 			/>
 			<View style={styles.button}>
-				<Button color="#FFF" title="Speichern" onPress={() => Alert.alert("gespeichert")} />
+				<Button
+					color="#FFF"
+					title="Speichern"
+					onPress={() => validatePassword(newPassword, confirmPassword)}
+				/>
 			</View>
 		</ScreenContainer>
 	)
