@@ -1,7 +1,7 @@
 import * as firebase from "firebase"
 import "firebase/firestore"
 import { Alert } from "react-native"
-import AppContext from "../../app/context/AppContext"
+import { AppContextReducerAction, AppContextState, DispatchAppContext, DispatchAppContextState } from "../../app/context/AppContext"
 
 export async function registration(email, password, lastName, firstName) {
 	try {
@@ -72,7 +72,7 @@ export function updateUserPassword(userNewPassword, andThen) {
 	user.updatePassword(userNewPassword).then(function() {
 		Alert.alert(
 			"Passwort wurde erfolgreich geändert",
-			"Bitte logge dich erneut in der App ein",
+			"Du wurdest automatisch ausgelogged",
 			[{ text: "OK", onPress: () => andThen }],
 			{ cancelable: true },
 		)
@@ -81,32 +81,51 @@ export function updateUserPassword(userNewPassword, andThen) {
 	});
 }
 
-export function deleteAccount(andThen) {
+export function deleteAccount(dispatch: DispatchAppContextState) {
 	const user = firebase.auth().currentUser;
 	
+	const deleteUSerAccount = () => {
+		user?.delete().then(() => {dispatch({type: "LOGOUT"})}).catch(function(error) {
+			Alert.alert(error)
+		})
+	}
+
 	Alert.alert(
 		"Account löschen?",
 		"Bist du sicher, dass du deinen Account löschen willst?",
 		[
-			{ text: "Ja", onPress: () => {
-			user?.delete().then(function() {
-				Alert.alert(
-					"Dein Account wurder erfolgreich gelöscjht",
-					"Du wurdest aus der App ausgelogged",
-					[{ text: "OK", onPress: () => andThen }],
-					{ cancelable: true },
-				)
-			}).catch(function(error) {
-				Alert.alert(error)
-				})
-			}
-			},
+			{ text: "Ja", onPress: () => deleteUSerAccount()},
 			{
-				text: "NEIN"
+				text: "NEIN",
+				style: "cancel"
 			}
 		],
-		{ cancelable: true },
 	)
+
+	// Alert.alert(
+	// 	"Account löschen?",
+	// 	"Bist du sicher, dass du deinen Account löschen willst?",
+	// 	[
+	// 		{ text: "Ja", onPress: () => {
+	// 		user?.delete().then(function() {
+	// 			Alert.alert(
+	// 				"Dein Account wurder erfolgreich gelöscjht",
+	// 				"Du wurdest aus der App ausgelogged",
+	// 				[{ text: "OK", onPress: () => }],
+	// 				{ cancelable: true },
+	// 			)
+	// 		}).catch(function(error) {
+	// 			Alert.alert(error)
+	// 			})
+	// 		}
+	// 		},
+	// 		{
+	// 			text: "NEIN",
+	// 			style: "cancel"
+	// 		}
+	// 	],
+	// 	{ cancelable: true },
+	// )
 }
 
 export function resetPassword(userEmailAddress) {
@@ -118,8 +137,7 @@ export function resetPassword(userEmailAddress) {
 		"Initiert",
 		"Falls du einen Account bei uns hast bekommst du in kürze eine E-Mail zum Zrücksetzen deines Passwords",
 		[{ text: "OK", onPress: () => {} }],
-		{ cancelable: true },
-				
+		{ cancelable: false },	
 	)
 	}).catch(function(error) {
 	Alert.alert(

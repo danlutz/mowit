@@ -7,7 +7,10 @@ import { ProfileStackParameters } from "../../constants/types"
 import { useNavigation } from "@react-navigation/native"
 import { TextInput } from "react-native-gesture-handler"
 import AppContext from "../../context/AppContext"
+
 import { deleteAccount } from "../../../api/firebase/firebaseAuth"
+
+import AlertAsync from "react-native-alert-async"
 
 const EditProfile = () => {
 	const { user, dispatch } = useContext(AppContext)
@@ -17,10 +20,6 @@ const EditProfile = () => {
 
 	const updateUser = (firstName: string, lastName: string) => {
 		dispatch({ type: "UPDATE_USER", payload: { firstName, lastName } })
-	}
-
-	const onDeleteSuccess = () => {
-		dispatch({ type: "LOGOUT" })
 	}
 
 	return (
@@ -93,7 +92,7 @@ const EditProfile = () => {
 				<Button
 					color="#E67E22"
 					title="Account löschen"
-					onPress={() => deleteAccount(onDeleteSuccess)}
+					onPress={() => deleteAccount(dispatch)}
 				/>
 			</View>
 		</ScreenContainer>

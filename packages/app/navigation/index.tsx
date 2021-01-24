@@ -100,6 +100,8 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 
 	const { isLoggedIn } = useContext(AppContext)
 
+	console.log(isLoggedIn)
+
 	React.useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false)
