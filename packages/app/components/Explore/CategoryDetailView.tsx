@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { Alert, Button } from "react-native"
+import { Alert, Button, StyleSheet } from "react-native"
 import { ScreenContainer } from "react-native-screens"
 import AppContext from "../../context/AppContext"
 import { Text } from "../Themed"
@@ -13,12 +13,11 @@ export const CategoryDetailView = ({ category }: Props) => {
 	})
 
 	return (
-		<ScreenContainer>
-			<Text>{category}</Text>
+		<ScreenContainer style={styles.container}>
+			<Text style={styles.heaadline}>{category}</Text>
 			{productsInCategory.map((product) => {
 				return <Product key={product.id} product={product} />
 			})}
-			<Button title="RENT IT" onPress={() => Alert.alert("RENT IT ")} />
 		</ScreenContainer>
 	)
 }
@@ -26,3 +25,19 @@ export const CategoryDetailView = ({ category }: Props) => {
 interface Props {
 	category: string
 }
+
+const styles = StyleSheet.create({
+	container: {
+		width: '100%',
+		minHeight: '100%',
+		backgroundColor: '#fff'
+	},
+	heaadline: {
+		width: '80%',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		marginTop: 20,
+		textAlign: 'center',
+		fontSize: 20
+	}
+})
