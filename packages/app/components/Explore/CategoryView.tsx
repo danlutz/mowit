@@ -19,26 +19,24 @@ export const CategoryView = () => {
 			<Temperature />
 
 			<FlatList
+				contentContainerStyle={styles.list}
 				data={categories}
 				renderItem={({ item: { title: category, image } }) => {
 					return (
 						<TouchableOpacity
 							onPress={() => navigate("CategoryDetailView", { category })}
+							style={styles.categoryContainer}
 						>
-							<View
-								style={{
-									flex: 1,
-									margin: 5,
-									minWidth: 170,
-									maxWidth: 223,
-									height: 304,
-									maxHeight: 304,
-									backgroundColor: "#CCC",
-								}}
-							>
+							<View style={styles.imageContainer}>
 								<Image source={image}></Image>
+							</View>
+							<View style={styles.textContainer}>
 								<Text>{category}</Text>
 							</View>
+							{/* <View
+								style={styles.categoryContainer}
+							>
+							</View> */}
 						</TouchableOpacity>
 					)
 				}}
@@ -51,7 +49,37 @@ const styles = StyleSheet.create({
 	placeholderText: {
 		paddingBottom: 30,
 	},
-	container: {
-		width: "100%",
+	list: {
+		display: 'flex',
+		flexDirection: 'column',
+		flexWrap: 'wrap',
+		justifyContent: 'center',
+		width: '100%'
 	},
+	container: {
+		width: '100%',
+		backgroundColor: '#ffffff',
+	},
+	categoryContainer: {
+		width: 100,
+		margin: 20,
+		shadowColor: "#111111",
+		shadowOpacity: 0.2,
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+	},
+	imageContainer: {
+		width: 100
+	},
+	textContainer: {
+		width: 100
+	},
+	image: {
+
+	},
+	text: {
+
+	}
 })
