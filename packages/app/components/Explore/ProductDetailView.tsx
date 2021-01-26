@@ -15,7 +15,7 @@ export const ProductDetailView = ({ id }: { id: string }) => {
 
 	return (
 		<ScreenContainer style={styles.container}>
-			<Image resizeMode={'cover'} style={styles.image} source={{ width: 100, uri: 'https://via.placeholder.com/150 ' }}></Image>
+			<Image resizeMode={'cover'} style={styles.image} source={{ width: 100, uri: image }}></Image>
 			<View style={styles.indicator}>
 				<View style={styles.sellerInformation}>
 					<View style={styles.row}>
