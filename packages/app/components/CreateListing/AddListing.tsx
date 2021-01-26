@@ -64,7 +64,14 @@ export const AddListing = () => {
 		Alert.alert(
 			"Produktplatzierung erfolgreich",
 			"",
-			[{ text: "OK", onPress: () => navigation.navigate("Explore") }],
+			[
+				{
+					text: "OK",
+					onPress: () => {
+						navigation.navigate("Explore")
+					},
+				},
+			],
 			{ cancelable: true },
 		)
 	}

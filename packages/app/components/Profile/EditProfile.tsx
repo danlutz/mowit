@@ -8,6 +8,10 @@ import { useNavigation } from "@react-navigation/native"
 import { TextInput } from "react-native-gesture-handler"
 import AppContext from "../../context/AppContext"
 
+import { deleteAccount } from "../../../api/firebase/firebaseAuth"
+
+import AlertAsync from "react-native-alert-async"
+
 const EditProfile = () => {
 	const { user, dispatch } = useContext(AppContext)
 	const [firstName, setFirstName] = useState("")
@@ -85,7 +89,11 @@ const EditProfile = () => {
 				</TouchableOpacity>
 			</View>
 			<View style={styles.links}>
-				<Button color="#E67E22" title="Account löschen" onPress={() => signOut()} />
+				<Button
+					color="#E67E22"
+					title="Account löschen"
+					onPress={() => deleteAccount(dispatch)}
+				/>
 			</View>
 		</ScreenContainer>
 	)

@@ -21,21 +21,24 @@ const onboardingStepsByID: { [id: number]: OnboardingStep } = {
 		id: 0,
 		title: "Einfach",
 		image: require("../../assets/images/icon.png"),
-		description: "Mit nur 3 einfachen Klicks, innerhalb kürzester Zeit moderne Gartengeräte mieten.",
+		description:
+			"Mit nur 3 einfachen Klicks, innerhalb kürzester Zeit moderne Gartengeräte mieten.",
 		buttonTitle: "WEITER",
 	},
 	1: {
 		id: 1,
 		title: "Schnell",
 		image: require("../../assets/images/clock.png"),
-		description: "Du brauchst es jetzt sofort? Kein Problem, dein Gartengerät ist innerhalb einer Stunde bei dir.",
+		description:
+			"Du brauchst es jetzt sofort? Kein Problem, dein Gartengerät ist innerhalb einer Stunde bei dir.",
 		buttonTitle: "WEITER",
 	},
 	2: {
 		id: 2,
 		title: "Günstig",
 		image: require("../../assets/images/money.png"),
-		description: "Wieso kaufen, wenn du es mieten kannst? Miete nur wenn du es auch wirklich brauchst. ",
+		description:
+			"Wieso kaufen, wenn du es mieten kannst? Miete nur wenn du es auch wirklich brauchst. ",
 		buttonTitle: "Einloggen",
 	},
 }
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		paddingTop: 50,
-		fontFamily: 'Helvetica Neue'
+		fontFamily: "Helvetica Neue",
 	},
 	text: {
 		paddingTop: 40,
@@ -97,30 +100,30 @@ const styles = StyleSheet.create({
 	description: {
 		minWidth: 250,
 		width: 350,
-		textAlign: 'center',
-		fontSize: 16
+		textAlign: "center",
+		fontSize: 16,
 	},
 	skip: {
 		position: "absolute",
 		bottom: 25,
-		textDecorationStyle: 'solid',
-		textDecorationLine: 'underline',
-		textDecorationColor: '#E67E22'
+		textDecorationStyle: "solid",
+		textDecorationLine: "underline",
+		textDecorationColor: "#E67E22",
 	},
 	button: {
 		position: "absolute",
 		bottom: 100,
-		backgroundColor: '#E67E22',
+		backgroundColor: "#E67E22",
 		borderRadius: 4,
-		color: '#FFFFFF',
-		shadowColor: '#111111',
+		color: "#FFFFFF",
+		shadowColor: "#111111",
 		shadowOpacity: 0.2,
-		textTransform: 'uppercase',
+		textTransform: "uppercase",
 		width: 220,
 		shadowOffset: {
 			width: 0,
 			height: 2,
-		}
+		},
 	},
 })
 
