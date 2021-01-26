@@ -7,6 +7,7 @@ import Onboarding from "../components/Onboarding/Onboarding"
 import { CreateAccount } from "../components/Auth/CreateAccount"
 import { SignIn } from "../components/Auth/SignIn"
 import AppContext from "../context/AppContext"
+import { Icon } from 'react-native-elements'
 
 // NEW IMPORT FOR NAVIGATION
 import { ProfileScreen, ExploreScreen, AddListingScreen } from "../screens/HomeScreens"
@@ -87,10 +88,27 @@ const AuthStackScreen = () => (
 )
 
 const Home = () => (
-	<Tabs.Navigator>
-		<Tabs.Screen name="Explore" component={ExploreStackScreen} />
-		<Tabs.Screen name="AddListing" component={AddListingStackScreen} />
+	<Tabs.Navigator 
+		screenOptions={({ route }) => ({
+		tabBarIcon: ({ focused, color, size }) => {
+		  let iconName;
+
+		  if (route.name === 'Explore') {
+			iconName = 'search'
+		  } else if (route.name === 'AddListing') {
+			iconName = 'add-circle'
+		  } else if (route.name === 'Profile') {
+			iconName = 'person'
+		  }
+
+		  return <Icon type="ionicon" name={iconName} size={size} color="#E67E22" />;
+		},
+	  })}
+		tabBarOptions={{showLabel: false}} 
+	  >
 		<Tabs.Screen name="Profile" component={ProfileStackScreen} />
+		<Tabs.Screen name="AddListing" component={AddListingStackScreen} />
+		<Tabs.Screen name="Explore" component={ExploreStackScreen} />
 	</Tabs.Navigator>
 )
 
