@@ -23,21 +23,22 @@ export const CategoryView = () => {
 				data={categories}
 				renderItem={({ item: { title: category, image } }) => {
 					return (
-						<TouchableOpacity
-							onPress={() => navigate("CategoryDetailView", { category })}
-							style={styles.categoryContainer}
-						>
-							<View style={styles.imageContainer}>
-								<Image source={image}></Image>
-							</View>
-							<View style={styles.textContainer}>
-								<Text>{category}</Text>
-							</View>
-							{/* <View
-								style={styles.categoryContainer}
+							<View style={styles.categoryContainer}>
+								<TouchableOpacity
+								onPress={() => navigate("CategoryDetailView", { category })}
 							>
-							</View> */}
-						</TouchableOpacity>
+								<View style={styles.imageContainer}>
+									<Image style={styles.image} source={image}></Image>
+								</View>
+								<View style={styles.textContainer}>
+									<Text>{category}</Text>
+								</View>
+								{/* <View
+									style={styles.categoryContainer}
+								>
+								</View> */}
+							</TouchableOpacity>
+						</View>
 					)
 				}}
 			></FlatList>
@@ -51,18 +52,21 @@ const styles = StyleSheet.create({
 	},
 	list: {
 		display: 'flex',
-		flexDirection: 'column',
+		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
-		width: '100%'
+		width: '100%',
+		minHeight: '100%'
 	},
 	container: {
 		width: '100%',
 		backgroundColor: '#ffffff',
 	},
 	categoryContainer: {
-		width: 100,
-		margin: 20,
+		width: 160,
+		height: 140,
+		margin: 10,
+		borderRadius: 10,
 		shadowColor: "#111111",
 		shadowOpacity: 0.2,
 		shadowOffset: {
@@ -71,15 +75,25 @@ const styles = StyleSheet.create({
 		},
 	},
 	imageContainer: {
-		width: 100
+		width: 160
 	},
 	textContainer: {
-		width: 100
+		width: 160,
+		height: 40,
+		borderRadius: 10,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	image: {
-
+		width: 160,
+		height: 100,
+		borderTopLeftRadius: 10,
+		borderTopRightRadius: 10
 	},
 	text: {
-
+		width: 160,
+		height: 100,
+		backgroundColor: 'red',
 	}
 })
