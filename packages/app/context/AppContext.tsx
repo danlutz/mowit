@@ -1,6 +1,8 @@
 import React, { createContext, useReducer } from "react"
 
-const MOCK_PRODUCTS: Product[] = []
+const MOCK_PRODUCTS: Product[] = [
+	{id: "", name: "",description: "",image: "",category: "", username: ""}
+]
 
 export interface Product {
 	id: string

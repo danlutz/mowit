@@ -23,8 +23,8 @@ export const CategoryView = () => {
 				data={categories}
 				renderItem={({ item: { title: category, image } }) => {
 					return (
-							<View style={styles.categoryContainer}>
-								<TouchableOpacity
+						<View style={styles.categoryContainer}>
+							<TouchableOpacity
 								onPress={() => navigate("CategoryDetailView", { category })}
 							>
 								<View style={styles.imageContainer}>
@@ -51,16 +51,16 @@ const styles = StyleSheet.create({
 		paddingBottom: 30,
 	},
 	list: {
-		display: 'flex',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		width: '100%',
-		minHeight: '100%'
+		display: "flex",
+		flexDirection: "row",
+		flexWrap: "wrap",
+		justifyContent: "center",
+		width: "100%",
+		minHeight: "100%",
 	},
 	container: {
-		width: '100%',
-		backgroundColor: '#ffffff',
+		width: "100%",
+		backgroundColor: "#ffffff",
 	},
 	categoryContainer: {
 		width: 160,
@@ -75,25 +75,25 @@ const styles = StyleSheet.create({
 		},
 	},
 	imageContainer: {
-		width: 160
+		width: 160,
 	},
 	textContainer: {
 		width: 160,
 		height: 40,
 		borderRadius: 10,
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	image: {
 		width: 160,
 		height: 100,
 		borderTopLeftRadius: 10,
-		borderTopRightRadius: 10
+		borderTopRightRadius: 10,
 	},
 	text: {
 		width: 160,
 		height: 100,
-		backgroundColor: 'red',
-	}
+		backgroundColor: "red",
+	},
 })

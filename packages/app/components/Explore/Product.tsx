@@ -17,9 +17,11 @@ const Product = ({ product }: Props) => {
 		<TouchableOpacity onPress={() => navigate("ProductDetailView", { productId: id })}>
 			<View style={styles.container}>
 				<Image source={{ uri: image }} />
-				<View style={styles.imageContainer}>
-					{image ? <Image source={{ uri: image }} /> : <Text>Image</Text>}
-				</View>
+				<Image
+					resizeMode={"cover"}
+					style={styles.imageContainer}
+					source={{ width: 100, uri: image }}
+				></Image>
 				<View style={styles.infoContainer}>
 					<View style={styles.headlineContainer}>
 						<Text style={styles.headline}>{name}</Text>
